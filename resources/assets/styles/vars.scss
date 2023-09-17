@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+
+// responsive points
+$l: 1280px;
+$m: 860px;
+$s: 580px;
+
+:root {
+  //--navbar-height: 50px;
+
+  //--navbar-bg: rgb(239, 230, 238);
+  //--navbar-color: #607d8b;
+  //--grey: #7d7c83;
+  //--btn-hover-color: rgba(0, 0, 0, 0.11);
+  //--btn-active-color: rgba(61, 61, 61, 0.11);
+
+  --main-font: Inter;
+
+  --text-extra-big: 70px;
+  --text-bigger: 50px;
+  --text-big: 28px;
+  --text-normal: 20px;
+  --text-small: 18px
+}

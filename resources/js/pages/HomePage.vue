@@ -1,22 +1,7 @@
-<script>
-import CategoryTopMenu from "@/components/menu/CategoryTopMenu.vue";
-
-export default {
-    components: {CategoryTopMenu},
-    data() {
-        return {}
-    },
-    computed: {
-        products() {
-            return this.$store.getters.getProducts
-        }
-    }
-}
-</script>
-
 <template>
     <CategoryTopMenu/>
-    <div class="product-list">
+    <img :src="card" alt="">
+    <div class="product-list" @keyup.right="keyPress">
         <div class="grid gap-10 xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 s:grid-cols-1">
             <router-link :to="{name: 'product', params: { id: product.id }}" class="product flex flex-col text-center"
                          v-for="product in products"
@@ -32,6 +17,31 @@ export default {
         </div>
     </div>
 </template>
+
+<script>
+import CategoryTopMenu from "@/components/menu/CategoryTopMenu.vue";
+import card from "../../assets/images/card.apng";
+
+export default {
+    components: {CategoryTopMenu},
+    data() {
+        return {
+            card: card
+        }
+    },
+    computed: {
+        products() {
+            return this.$store.getters.getProducts
+        }
+    },
+    methods: {
+        keyPress() {
+            alert()
+        }
+    }
+}
+</script>
+
 
 <style>
 

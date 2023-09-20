@@ -23,4 +23,9 @@ class Product extends Model
     {
         return $this->belongsToMany(Kit::class, 'kit_product');
     }
+
+    public function rents(): BelongsToMany
+    {
+        return $this->belongsToMany(Rent::class, 'rent_product');
+    }
 }

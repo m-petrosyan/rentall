@@ -18,10 +18,9 @@ class DatabaseSeeder extends Seeder
             ProductCategorySeeder::class,
             ProductSeeder::class,
             KitSeeder::class,
-            KitOptionSeeder::class,
             RentSeeder::class,
-            RentProductSeeder::class,
             KitProductPivotSeeder::class,
+            RentProductPivotSeeder::class,
         ]);
     }
 }

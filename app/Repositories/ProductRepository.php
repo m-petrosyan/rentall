@@ -30,14 +30,6 @@ class ProductRepository implements ProductInterface
     /**
      * @return mixed
      */
-    public static function getSimilar(): mixed
-    {
-        return Product::inRandomOrder()->limit(6)->get();
-    }
-
-    /**
-     * @return mixed
-     */
     public static function getUserProducts(): mixed
     {
         return auth()->user()->products();

@@ -1,8 +1,9 @@
 <template>
     <div class="product-page mt-20" v-if="product">
-        <div class="product flex gap-x-10">
-            <div class="image w-1/2" :style="{backgroundImage: `url(${product.image})`}"/>
-            <div class="info w-1/2">
+        <div class="product flex md:gap-x-10 sm:gap-y-10 md:min-h-96 sm:flex-col md:flex-row">
+            <div class="image s:h-96 md:h-auto md:w-1/2 sm:w-full bg-contain bg-no-repeat md:bg-left s:bg-top"
+                 :style="{backgroundImage: `url(${product.image})`}"/>
+            <div class="info md:w-1/2  sm:w-full">
                 <h3 class="title font-bold">{{ product.title }}</h3>
                 <p class="price">{{ product.brand.title }}</p>
                 <h2 class="title mt-4 font-bold">{{ totalPrice }} AMD</h2>
@@ -17,13 +18,16 @@
                             </option>
                         </select>
                     </div>
-                    <button class="card">Add to cart</button>
-                    <div v-html="product.description"/>
                 </div>
+                <div class="flex gap-x-2 mt-8">
+                    <CountButton v-model:count="count"/>
+                    <button class="card">Add to cart</button>
+                </div>
+
             </div>
         </div>
+        <div class="mt-16" v-html="product.description"/>
         <div class="flex mt-20 gap-x-6">
-            <!--            <ProductComponent :products="product.similar_products"/>-->
             <ProductSimilarSliderComponent :products="product.similar_products"/>
         </div>
     </div>
@@ -34,19 +38,24 @@
 import {mapActions} from "vuex";
 import ProductComponent from "@/components/product/ProductComponent.vue";
 import ProductSimilarSliderComponent from "@/components/product/ProductSimilarSliderComponent.vue";
+import CountButton from "@/components/elements/CountButton.vue";
 
 export default {
-    components: {ProductComponent, ProductSimilarSliderComponent},
+    components: {CountButton, ProductComponent, ProductSimilarSliderComponent},
     data() {
         return {
+            count: 1,
             options: []
         }
     },
     mounted() {
-        this.getProduct(this.$route.params.id)
+        this.getProductQuery()
     },
     methods: {
-        ...mapActions(['getProduct'])
+        ...mapActions(['getProduct']),
+        getProductQuery() {
+            this.getProduct(this.$route.params.id)
+        }
     },
     computed: {
         product() {
@@ -60,9 +69,16 @@ export default {
         totalPrice() {
             let total = 0
             this.options.forEach(item => total += item.price)
-            return total + this.product.price
+            return (total + this.product.price) * this.count
         }
     },
+    watch: {
+        $route(to, from) {
+            if (from.params.id && to.params.id !== undefined && to.params.id !== from.params.id) {
+                this.getProductQuery()
+            }
+        }
+    }
 }
 
 </script>

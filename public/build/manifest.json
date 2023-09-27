@@ -1,20 +1,20 @@
 {
-  "resources/assets/images/card.apng": {
-    "file": "assets/card-468efafb.apng",
-    "src": "resources/assets/images/card.apng"
+  "resources/assets/images/card.svg": {
+    "file": "assets/card-b58ba7fe.svg",
+    "src": "resources/assets/images/card.svg"
   },
   "resources/js/app.css": {
-    "file": "assets/app-349025c5.css",
+    "file": "assets/app-67ec86b1.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
     "assets": [
-      "assets/card-468efafb.apng"
+      "assets/card-b58ba7fe.svg"
     ],
     "css": [
-      "assets/app-349025c5.css"
+      "assets/app-67ec86b1.css"
     ],
-    "file": "assets/app-6dd171cf.js",
+    "file": "assets/app-37172d08.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },

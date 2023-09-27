@@ -4,7 +4,6 @@ namespace App\Http\Resources\Product;
 
 use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Kit\KitCollection;
-use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -33,7 +32,7 @@ class ProductResource extends JsonResource
         }
 
         if (request()->routeIs('product.show')) {
-            $data['similar_products'] = new ProductSimilarCollection(ProductRepository::getSimilar());
+            $data['similar_products'] = new ProductSimilarCollection($this->similar()->randomItem());
         }
 
         return $data;

@@ -38,6 +38,14 @@ class Product extends Model
     }
 
     /**
+     * @return BelongsToMany
+     */
+    public function similar(): BelongsToMany
+    {
+        return $this->belongsToMany(Product::class, 'similar_product', 'similar', 'product_id');
+    }
+
+    /**
      * @return BelongsTo
      */
     public function category(): BelongsTo
@@ -60,5 +68,14 @@ class Product extends Model
     public function scopeWithRelations($query): mixed
     {
         return $query->with(['brand', 'category', 'kits']);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeRandomItem($query): mixed
+    {
+        return $query->inRandomOrder()->limit(6)->get();
     }
 }

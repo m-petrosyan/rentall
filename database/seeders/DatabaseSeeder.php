@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             RentSeeder::class,
             KitProductPivotSeeder::class,
             RentProductPivotSeeder::class,
+            ProductSimilarSeeder::class,
         ]);
     }
 }

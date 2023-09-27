@@ -1,20 +1,20 @@
 {
-  "resources/assets/images/14383918.jpg": {
-    "file": "assets/14383918-0f49066e.jpg",
-    "src": "resources/assets/images/14383918.jpg"
+  "resources/assets/images/card.apng": {
+    "file": "assets/card-468efafb.apng",
+    "src": "resources/assets/images/card.apng"
   },
   "resources/js/app.css": {
-    "file": "assets/app-fa89522f.css",
+    "file": "assets/app-349025c5.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
     "assets": [
-      "assets/14383918-0f49066e.jpg"
+      "assets/card-468efafb.apng"
     ],
     "css": [
-      "assets/app-fa89522f.css"
+      "assets/app-349025c5.css"
     ],
-    "file": "assets/app-15c9168b.js",
+    "file": "assets/app-6dd171cf.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },

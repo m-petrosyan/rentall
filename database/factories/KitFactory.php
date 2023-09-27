@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Kit;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Kit>
+ * @extends Factory<Kit>
  */
 class KitFactory extends Factory
 {

@@ -3,49 +3,56 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Product\ProductCreateRequest;
+use App\Http\Requests\Product\ProductGetRequest;
+use App\Http\Resources\Product\ProductCollection;
+use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
+use App\Repositories\ProductRepository;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected ProductService $productService;
+
+    public function __construct(ProductService $productService)
     {
-        //
+        $this->productService = $productService;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
+     * @return ProductCollection
      */
-    public function create()
+    public function index(ProductGetRequest $request): ProductCollection
     {
-        //
+        return new ProductCollection(ProductRepository::getWithPaginate($request->limit, $request->page));
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  ProductCreateRequest  $request
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(ProductCreateRequest $request): Response
     {
-        //
+        $this->productService->store($request->validated());
+
+        return response()->noContent();
     }
 
     /**
      * Display the specified resource.
+     *
+     * @param  Product  $product
+     * @return ProductResource
      */
-    public function show(Product $product)
+    public function show(Product $product): ProductResource
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
+        return new ProductResource($product);
     }
 
     /**

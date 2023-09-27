@@ -5,6 +5,7 @@ import store from './store'
 import 'v-calendar/style.css';
 import VCalendar from 'v-calendar';
 import '../assets/styles/style.scss'
+import '../assets/styles/main.scss'
 
 createApp(App)
     .use(store)

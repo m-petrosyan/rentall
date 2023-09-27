@@ -3,25 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Rent\RentCollection;
+use App\Http\Resources\Rent\RentResource;
 use App\Models\Rent;
+use App\Repositories\RentRepository;
 use Illuminate\Http\Request;
 
 class RentController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return RentCollection
      */
-    public function index()
+    public function index(): RentCollection
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return new RentCollection(RentRepository::getAll());
     }
 
     /**
@@ -34,18 +31,13 @@ class RentController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param  Rent  $rent
+     * @return RentResource
      */
-    public function show(Rent $rent)
+    public function show(Rent $rent): RentResource
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Rent $rent)
-    {
-        //
+        return new RentResource($rent);
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
-use App\Models\ProductCategory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,8 @@ class ProductFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id,
-            'product_category_id' => ProductCategory::inRandomOrder()->first()->id,
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'brand_id' => Brand::inRandomOrder()->first()->id,
             'title' => $this->faker->text(20),
             'price' => $this->faker->numberBetween(5000, 50000),
             'description' => $this->faker->text(200),

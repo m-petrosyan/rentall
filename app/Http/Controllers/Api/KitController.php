@@ -3,25 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Kit\KitCollection;
+use App\Http\Resources\Kit\KitResource;
 use App\Models\Kit;
+use App\Repositories\KitRepository;
 use Illuminate\Http\Request;
 
 class KitController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return KitCollection
      */
-    public function index()
+    public function index(): KitCollection
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return new KitCollection(KitRepository::getAll());
     }
 
     /**
@@ -34,18 +31,13 @@ class KitController extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @param  Kit  $kit
+     * @return KitResource
      */
-    public function show(Kit $kit)
+    public function show(Kit $kit): KitResource
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Kit $kit)
-    {
-        //
+        return new KitResource($kit);
     }
 
     /**

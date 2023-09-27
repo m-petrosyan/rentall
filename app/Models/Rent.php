@@ -18,4 +18,13 @@ class Rent extends Model
     {
         return $this->belongsToMany(Product::class, 'rent_product');
     }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeWithRelations($query): mixed
+    {
+        return $query->with('products')->get();
+    }
 }

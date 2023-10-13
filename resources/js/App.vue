@@ -1,27 +1,27 @@
 <template>
-    <header>
-        header sda
-    </header>
-    <CardButtonComponent/>
-    <main class="max-w-screen-lg mx-auto s:px-10 md:px-16 lg:px-0">
-        <router-view/>
+    <MainTopMenu/>
+    <CartButtonComponent :cart="cart"/>
+    <main class="max-w-screen-lg w-full mx-auto mt-20 mb-36 s:px-10 md:px-16 lg:px-0">
+        <router-view :setStorage="setStorage" :cart="cart"/>
     </main>
+    <Footer/>
 </template>
 
 <script>
 
-import {defineComponent} from "vue";
-import CardButtonComponent from "@/components/card/CardButtonComponent.vue";
+import CartButtonComponent from "@/components/elements/CartButtonComponent.vue";
+import storageMixin from "@/mixins/storageMixin";
+import Footer from "@/components/parth/Footer.vue";
+import MainTopMenu from "@/components/menu/MainTopMenu.vue";
 
-export default defineComponent({
-    components: {CardButtonComponent}
-})
+export default {
+    components: {MainTopMenu, Footer, CartButtonComponent},
+    mixins: [storageMixin]
+}
 </script>
 
 
 <style scoped>
-header {
-    background-color: red;
-}
+
 
 </style>

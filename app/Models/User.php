@@ -48,6 +48,15 @@ class User extends Authenticatable
     /**
      * @return HasMany
      */
+    public function category(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+
+    /**
+     * @return HasMany
+     */
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);

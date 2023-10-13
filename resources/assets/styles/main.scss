@@ -16,7 +16,14 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    //background-color: #f5f5f5;
 
+
+    #app {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
     p, select, a {
         font-size: 12px;
@@ -38,11 +45,15 @@ body {
         font-weight: 600;
         border-radius: 5px;
 
-        &.card {
+        &.cart {
             background-color: black;
             color: white;
             padding: 8px 25px;
         }
+    }
+
+    hr {
+        color: rgba(128, 128, 128, 0.28);
     }
 
     select {

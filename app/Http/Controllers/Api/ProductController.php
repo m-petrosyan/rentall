@@ -5,25 +5,28 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductCreateRequest;
 use App\Http\Requests\Product\ProductGetRequest;
+use App\Http\Requests\Product\ProductUpdateRequest;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
     protected ProductService $productService;
 
+    /**
+     * @param  ProductService  $productService
+     */
     public function __construct(ProductService $productService)
     {
         $this->productService = $productService;
     }
 
     /**
-     * Display a listing of the resource.
+     * @param  ProductGetRequest  $request
      * @return ProductCollection
      */
     public function index(ProductGetRequest $request): ProductCollection
@@ -57,17 +60,28 @@ class ProductController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  ProductUpdateRequest  $request
+     * @param  Product  $product
+     * @return Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product): Response
     {
-        //
+        $this->productService->update($product, $request->validated());
+
+        return response()->noContent();
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  Product  $product
+     * @return Response
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): Response
     {
-        //
+        $this->productService->destroy($product);
+
+        return response()->noContent();
     }
 }

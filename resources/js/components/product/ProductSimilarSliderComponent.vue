@@ -1,12 +1,10 @@
 <template>
-    <div id="app">
-        <div class="slider flex align-center justify-between">
-            <ArrowButton v-model:index="currentIndex" :length="this.products.length" :next="false"/>
-            <div class="flex gap-x-5 w-11/12">
-                <ProductComponent :products="displayedItems"/>
-            </div>
-            <ArrowButton v-model:index="currentIndex" :length="this.products.length" :next="true"/>
+    <div class="slider flex align-center justify-between">
+        <ArrowButton v-model:index="currentIndex" :length="this.products.length" :next="false"/>
+        <div class="flex gap-x-5 w-11/12">
+            <ProductComponent :products="displayedItems"/>
         </div>
+        <ArrowButton v-model:index="currentIndex" :length="this.products.length" :next="true"/>
     </div>
 </template>
 

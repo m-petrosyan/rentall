@@ -13,7 +13,6 @@ class Kit extends Model
 
     protected $fillable = [
         'title',
-        'options',
     ];
 
     use HasFactory;

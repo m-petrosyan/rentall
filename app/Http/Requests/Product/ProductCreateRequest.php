@@ -30,6 +30,8 @@ class ProductCreateRequest extends FormRequest
             'slider' => ['nullable', 'boolean'],
             'category_id' => ['required', 'exists:categories,id'],
             'brand_id' => ['required', 'exists:brands,id'],
+            'kits' => ['nullable', 'array'],
+            'kits.*' => ['numeric'],
         ];
     }
 }

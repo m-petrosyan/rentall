@@ -16,6 +16,14 @@ class ProductRepository implements ProductInterface
         return Product::withRelations();
     }
 
+    /**
+     * @param $products
+     * @return mixed
+     */
+    public static function getSumm($products)
+    {
+        return Product::whereIn('id', $products)->sum('price');
+    }
 
     /**
      * @param  int  $limit

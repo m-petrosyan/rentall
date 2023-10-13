@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import CategoryTopMenu from "@/components/menu/CategoryTopMenu.vue";
 import {mapActions} from "vuex";
+import CategoryTopMenu from "@/components/menu/CategoryTopMenu.vue";
 import ProductComponent from "@/components/product/ProductComponent.vue";
 
 export default {

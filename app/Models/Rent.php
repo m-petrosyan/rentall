@@ -11,6 +11,16 @@ class Rent extends Model
     use HasFactory;
 
 
+    protected $fillable = [
+        'full_name',
+        'email',
+        'tel',
+        'comment',
+        'start_date',
+        'end_date',
+        'total_price',
+    ];
+
     /**
      * @return BelongsToMany
      */

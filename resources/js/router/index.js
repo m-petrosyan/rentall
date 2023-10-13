@@ -2,7 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 import ClientLayouth from "../components/layouts/ClientLayouth.vue";
 import HomePage from "@/pages/HomePage.vue";
 import ProductPage from "@/pages/ProductPage.vue";
-import CardPage from "@/pages/CardPage.vue";
+import CartPage from "@/pages/CartPage.vue";
+import NotFound404 from "@/pages/NotFound404.vue";
 
 const routes = [
     {
@@ -20,9 +21,14 @@ const routes = [
                 component: ProductPage
             },
             {
-                path: 'card',
-                name: 'card',
-                component: CardPage
+                path: 'cart',
+                name: 'cart',
+                component: CartPage
+            },
+            {
+                path: '/:pathMatch(.*)*',
+                name: '404',
+                component: NotFound404
             },
         ]
     }

@@ -12,12 +12,13 @@ module.exports = {
                 96: '384px',
             },
             spacing: {},
-    
+
         },
         fontSize: {},
         colors: {
             'white': '#fff',
             'orange': '#ff5722',
+            'dark': '#25262b',
             // 'milky-white': 'rgb(239, 230, 238)',
             // 'grey-blue': '#607d8b',
             'grey': '#dcdcdc',

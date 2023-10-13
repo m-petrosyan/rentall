@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('kits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title')->index();
             $table->timestamps();
         });

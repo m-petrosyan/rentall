@@ -23,6 +23,7 @@
         "vuex": "^4.1.0"
     },
     "dependencies": {
+        "flowbite": "^1.8.1",
         "moment": "^2.29.4",
         "v-calendar": "next"
     }

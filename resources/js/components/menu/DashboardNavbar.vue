@@ -2,7 +2,7 @@
     <section class="bg-dark-grey text-white">
         <ul class="flex flex-col gap-y-5 mx-auto mt-10 w-8/12">
             <li>
-                <div class="flex gap-x-2">
+                <router-link :to="{name:'db-category'}" class="flex gap-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -11,7 +11,7 @@
                     <h3>
                         Category
                     </h3>
-                </div>
+                </router-link>
             </li>
             <li>
                 <div class="flex gap-x-2">
@@ -35,7 +35,7 @@
                 </div>
             </li>
             <li>
-                <div class="flex gap-x-2">
+                <router-link :to="{name:'db-product'}" class="flex gap-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +44,7 @@
                               d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"/>
                     </svg>
                     <h3>Product</h3>
-                </div>
+                </router-link>
             </li>
             <li class="flex gap-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

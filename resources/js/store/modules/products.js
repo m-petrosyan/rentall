@@ -26,7 +26,7 @@ export default {
         getProducts({commit}, paginate) {
             return getRequest(`/product`, paginate)
                 .then(response => {
-                    commit("setProducts", response.data)
+                    commit("setProducts", response)
                     commit('setProductError', null)
                 })
                 .catch(error => {
@@ -38,6 +38,17 @@ export default {
             return getRequest(`/product/${id}`)
                 .then(response => {
                     commit("setProduct", response.data)
+                    commit('setProductError', null)
+                })
+                .catch(error => {
+                    commit('setProductError', error)
+                    return Promise.reject(error)
+                });
+        },
+        editProduct({commit}, id) {
+            return getRequest(`/product/${id}/edit`)
+                .then(response => {
+                    commit("setProduct", response)
                     commit('setProductError', null)
                 })
                 .catch(error => {

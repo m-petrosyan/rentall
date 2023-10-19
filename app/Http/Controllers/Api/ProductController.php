@@ -7,6 +7,7 @@ use App\Http\Requests\Product\ProductCreateRequest;
 use App\Http\Requests\Product\ProductGetRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
 use App\Http\Resources\Product\ProductCollection;
+use App\Http\Resources\Product\ProductEditResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
@@ -46,6 +47,18 @@ class ProductController extends Controller
 
         return response()->noContent();
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  Product  $product
+     * @return ProductEditResource
+     */
+    public function edit(Product $product): ProductEditResource
+    {
+        return new ProductEditResource($product);
+    }
+
 
     /**
      * Display the specified resource.

@@ -25,7 +25,7 @@ body {
         flex-direction: column;
     }
 
-    p, select, a {
+    p {
         font-size: 12px;
     }
 
@@ -66,6 +66,31 @@ body {
 
         option {
 
+        }
+    }
+
+    input[type=checkbox] {
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .vs__dropdown-toggle {
+        border: none;
+
+        .vs__selected {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .vs__actions {
+            padding: 4px;
+
+
+            svg {
+                transform: scale(.9);
+                fill: #868686;
+            }
         }
     }
 }

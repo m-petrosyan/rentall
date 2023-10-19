@@ -25,6 +25,7 @@
     "dependencies": {
         "flowbite": "^1.8.1",
         "moment": "^2.29.4",
-        "v-calendar": "next"
+        "v-calendar": "next",
+        "vue-select": "^4.0.0-beta.6"
     }
 }

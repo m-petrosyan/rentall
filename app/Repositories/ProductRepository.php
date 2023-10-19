@@ -13,7 +13,7 @@ class ProductRepository implements ProductInterface
      */
     public static function getAll(): Collection
     {
-        return Product::withRelations();
+        return Product::get();
     }
 
     /**

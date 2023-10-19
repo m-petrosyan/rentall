@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen">
+    <div class="flex min-h-screen">
         <DashboardNavbar class="w-2/12"/>
         <div class="w-10/12">
             <router-view/>

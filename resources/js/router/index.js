@@ -6,13 +6,18 @@ import AdminLayouth from "@/components/layouts/AdminLayouth.vue";
 import HomePage from "@/pages/client/HomePage.vue";
 import ProductPage from "@/pages/client/ProductPage.vue";
 import CartPage from "@/pages/client/CartPage.vue";
-import NotFound404 from "@/pages/client/NotFound404.vue";
 
 //admin
 import LoginPage from "@/pages/dashboard/LoginPage.vue";
 import Dashboard from "@/pages/dashboard/Dashboard.vue";
-import CategoryCrudPage from "@/pages/dashboard/CategoryCrudPage.vue";
-import ProductCrudPage from "@/pages/dashboard/ProductCrudPage.vue";
+// import CategoryEditPage from "@/pages/dashboard/Category/CategoryEditPage.vue";
+import CategoryListPage from "@/pages/dashboard/category/CategoryListPage.vue";
+import ProductListPage from "@/pages/dashboard/product/ProductListPage.vue";
+import ProductCreateEditPage from "@/pages/dashboard/product/ProductCreateEditPage.vue";
+
+//other
+import NotFound404 from "@/pages/other/NotFound404.vue";
+
 
 const routes = [
     {
@@ -54,13 +59,28 @@ const routes = [
                     {
                         path: '',
                         name: 'db-category',
-                        component: CategoryCrudPage,
+                        component: CategoryListPage,
                     },
                     {
-                        path: 'products',
-                        name: 'db-product',
-                        component: ProductCrudPage,
-                    }
+                        path: 'product',
+                        children: [
+                            {
+                                path: '',
+                                name: 'db-product',
+                                component: ProductListPage,
+                            },
+                            {
+                                path: 'create',
+                                name: 'db-productcreate',
+                                component: ProductCreateEditPage,
+                            },
+                            {
+                                path: ':id/update',
+                                name: 'db-productupdate',
+                                component: ProductCreateEditPage,
+                            }
+                        ]
+                    },
                 ]
             }
         ]

@@ -31,7 +31,9 @@ class ProductUpdateRequest extends FormRequest
             'category_id' => ['nullable', 'exists:categories,id'],
             'brand_id' => ['nullable', 'exists:brands,id'],
             'kits' => ['nullable', 'array'],
-            'kits.*' => ['numeric'],
+            'kits.*' => ['numeric', 'exists:kits,id'],
+            'similars' => ['nullable', 'array'],
+            'similars.*' => ['numeric', 'exists:products,id'],
         ];
     }
 }

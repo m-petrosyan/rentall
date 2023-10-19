@@ -15,7 +15,7 @@ class ProductSimilarSeeder extends Seeder
         $product = Product::all();
 
         foreach ($product as $item) {
-            $item->similar()->attach($product->random(rand(6, 12))->pluck('id')->toArray());
+            $item->similars()->attach($product->random(rand(6, 12))->pluck('id')->toArray());
         }
     }
 }

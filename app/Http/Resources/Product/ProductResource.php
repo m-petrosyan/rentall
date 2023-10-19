@@ -16,7 +16,7 @@ class ProductResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $data = [
+        return [
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
@@ -25,16 +25,8 @@ class ProductResource extends JsonResource
             'slider' => $this->slider,
             'brand' => new CategoryResource($this->brand),
             'category' => new CategoryResource($this->category),
+            'kits' => new KitCollection($this->kits()->withRelations()),
+            'similar_products' => new ProductSimilarCollection($this->similars()->randomItem()),
         ];
-
-        if (!request()->routeIs('kit.*')) {
-            $data['kits'] = new KitCollection($this->kits()->withRelations());
-        }
-
-        if (request()->routeIs('product.show')) {
-            $data['similar_products'] = new ProductSimilarCollection($this->similar()->randomItem());
-        }
-
-        return $data;
     }
 }

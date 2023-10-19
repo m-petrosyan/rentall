@@ -1,5 +1,5 @@
 <template>
-    <div class="product-page" v-if="product">
+    <div class="product-page" v-if="product && !loading">
         <div class="product flex md:gap-x-10 sm:gap-y-10 md:min-h-96 sm:flex-col md:flex-row">
             <div class="image s:h-96 md:h-auto md:w-1/2 sm:w-full bg-contain bg-no-repeat md:bg-left s:bg-top"
                  :style="{backgroundImage: `url(${product.image})`}"/>
@@ -31,6 +31,7 @@
             <ProductSimilarSliderComponent :products="product.similar_products"/>
         </div>
     </div>
+    <Preloader v-else/>
 </template>
 
 <script>
@@ -39,25 +40,27 @@ import {mapActions} from "vuex";
 import ProductComponent from "@/components/product/ProductComponent.vue";
 import ProductSimilarSliderComponent from "@/components/product/ProductSimilarSliderComponent.vue";
 import CountButton from "@/components/elements/CountButton.vue";
+import Preloader from "@/pages/other/Preloader.vue";
 
 export default {
-    components: {CountButton, ProductComponent, ProductSimilarSliderComponent},
+    components: {Preloader, CountButton, ProductComponent, ProductSimilarSliderComponent},
     props: {
         setStorage: Function
     },
     data() {
         return {
+            loading: true,
             count: 1,
             options: []
         }
     },
-    mounted() {
-        this.getProductQuery()
+    created() {
+        this.getProductQuery().then(() => this.loading = false)
     },
     methods: {
         ...mapActions(['getProduct']),
         getProductQuery() {
-            this.getProduct(this.$route.params.id)
+            return this.getProduct(this.$route.params.id)
         },
         addToCart() {
             const data = {
@@ -69,7 +72,6 @@ export default {
             }
             this.setStorage('cart', data)
         }
-
     },
     computed: {
         product() {

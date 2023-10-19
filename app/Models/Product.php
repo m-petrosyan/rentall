@@ -40,7 +40,7 @@ class Product extends Model
     /**
      * @return BelongsToMany
      */
-    public function similar(): BelongsToMany
+    public function similars(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'similar_product', 'similar', 'product_id');
     }

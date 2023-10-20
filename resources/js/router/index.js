@@ -65,7 +65,7 @@ const routes = [
                         path: 'product',
                         children: [
                             {
-                                path: '',
+                                path: ':page',
                                 name: 'db-product',
                                 component: ProductListPage,
                             },

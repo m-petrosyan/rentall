@@ -19,7 +19,6 @@ class KitFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
             'title' => $this->faker->name,
         ];
     }

@@ -35,7 +35,7 @@
                 </div>
             </li>
             <li>
-                <router-link :to="{name:'db-product'}" class="flex gap-x-2">
+                <router-link :to="{name:'db-product',params:{page: 1}}" class="flex gap-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"

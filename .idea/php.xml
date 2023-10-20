@@ -93,7 +93,6 @@
       <path value="$PROJECT_DIR$/vendor/psr/clock" />
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
       <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
@@ -140,6 +139,7 @@
       <path value="$PROJECT_DIR$/vendor/nyholm/psr7" />
       <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
       <path value="$PROJECT_DIR$/vendor/laravel/passport" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

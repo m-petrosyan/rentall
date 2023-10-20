@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         changePage(page) {
-            this.$emit('update:page', page)
+            this.$router.push({ name: 'db-product',params:{page: page}})
         }
     },
     computed: {

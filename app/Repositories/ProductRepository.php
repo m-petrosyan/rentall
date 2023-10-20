@@ -17,6 +17,14 @@ class ProductRepository implements ProductInterface
     }
 
     /**
+     * @return mixed
+     */
+    public static function getSliders(): Collection
+    {
+        return Product::where('slider',1)->get();
+    }
+
+    /**
      * @param $products
      * @return mixed
      */

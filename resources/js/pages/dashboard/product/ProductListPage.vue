@@ -62,7 +62,7 @@
                         </tbody>
                     </table>
                 </div>
-                <PaginationCreateComponent :meta="products.meta" v-model:page="this.paginate.page"/>
+                <PaginationCreateComponent :meta="products.meta"  :page="this.paginate.page"/>
             </div>
         </div>
     </section>
@@ -117,13 +117,12 @@ export default {
             loading: true,
             paginate: {
                 limit: 10,
-                page: 1
+                page: +this.$route.params.page
             }
         }
     },
     created() {
-        this.getProducts(this.paginate)
-            .then(() => this.loading = false)
+        this.getProductsQuery()
     },
     computed: {
         products() {
@@ -131,7 +130,11 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['getProducts'])
+        ...mapActions(['getProducts']),
+        getProductsQuery(){
+            this.getProducts(this.paginate)
+                .then(() => this.loading = false)
+        }
     },
     watch: {
         paginate: {
@@ -140,7 +143,12 @@ export default {
                 this.getProducts(this.paginate).then(() => this.loading = false)
             },
             deep: true
-        }
+        },
+        $route  (to, from) {
+            if (to.name === from.name){
+                this.paginate.page =  +this.$route.params.page
+            }
+        },
     }
 }
 </script>

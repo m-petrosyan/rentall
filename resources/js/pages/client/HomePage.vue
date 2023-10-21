@@ -1,7 +1,9 @@
 <template>
-    <Splide v-if="products" :options="{ rewind: true }" aria-label="My Favorite Images">
+    <Splide v-if="products" :options="slider" aria-label="My Favorite Images">
         <SplideSlide v-for="slide in products.data.slider" :key="slide.id">
-            <img :src="slide.image" :alt="slide.title">
+            <router-link :to="{name: 'product', params: { id: slide.id }}">
+                <img :src="slide.image" :alt="slide.title">
+            </router-link>
         </SplideSlide>
     </Splide>
     <CategoryTopMenu/>
@@ -16,12 +18,22 @@
 import {mapActions} from "vuex";
 import CategoryTopMenu from "@/components/menu/CategoryTopMenu.vue";
 import ProductComponent from "@/components/product/ProductComponent.vue";
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
+import {SplideSlide} from '@splidejs/vue-splide';
 
 export default {
-    components: {ProductComponent, CategoryTopMenu,SplideSlide},
+    components: {ProductComponent, CategoryTopMenu, SplideSlide},
     data() {
         return {
+            slider: {
+                interval: 10000,
+                speed: 1000,
+                autoplay: true,
+                cover: true,
+                pauseOnHover: true,
+                rewind: true,
+                gap: '1rem',
+                height: '500px',
+            },
             paginate: {
                 limit: 12,
                 page: 1

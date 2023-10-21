@@ -1,5 +1,5 @@
 <template>
-    <div class="slider flex align-center justify-between">
+    <div class="slider flex align-center justify-between h-64 w-full">
         <ArrowButton v-model:index="currentIndex" :length="this.products.length" :next="false"/>
         <div class="flex gap-x-5 w-11/12">
             <ProductComponent :products="displayedItems"/>

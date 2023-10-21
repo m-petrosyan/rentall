@@ -19,18 +19,8 @@
                 <div class="w-1/6">
                     <CountButton v-model:count="item.count" :plus="()=>plus(item)" :minus="()=>minus(index)"/>
                 </div>
-                <h2 class="flex flex-col gap-y-10  items-end w-1/6 text-right">
+                <h2 class="flex flex-col w-1/6 text-right">
                     {{ item.price * item.count }} AMD
-                    <button class="opacity-50" @click="deleteItem(item.dataId)">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             class="icon icon-tabler icon-tabler-square-rounded-minus" width="30" height="30"
-                             viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none" stroke-linecap="round"
-                             stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M9 12h6"/>
-                            <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"/>
-                        </svg>
-                    </button>
                 </h2>
             </div>
             <h2 class="flex justify-end font-bold">Total price: {{ totalPrice }} AMD</h2>
@@ -75,7 +65,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="mt-6 flex items-center justify-end gap-x-6">
                 <button class="cart">Order</button>
             </div>
@@ -90,7 +79,8 @@ import moment from 'moment'
 export default {
     components: {CountButton},
     props: {
-        cart: Object
+        cart: Object,
+        setStorage: Function
     },
     data() {
         return {
@@ -105,9 +95,11 @@ export default {
     methods: {
         plus(item) {
             this.cart.push(item)
+            this.setStorage('cart', this.cart, true)
         },
         minus(index) {
             this.cart.splice(index, 1)
+            this.setStorage('cart', this.cart, true)
         },
         dayClick(e) {
             console.log(e)

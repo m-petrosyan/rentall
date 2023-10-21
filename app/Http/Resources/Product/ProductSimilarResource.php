@@ -18,7 +18,7 @@ class ProductSimilarResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'price' => $this->price,
-            'image' => $this->image,
+            'main_image' => $this->getFirstMediaUrl('main_image'),
         ];
     }
 }

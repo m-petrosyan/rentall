@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="{name:'cart'}" class="fixed h-16 w-16 top-16 right-10  p-3" href="">
+    <router-link :to="{name:'cart'}" class="fixed h-16 w-16 top-16 right-10 p-3 z-10" href="">
         <div ref="icon" class="h-full w-full bg-contain"/>
         <p class="absolute bottom-0 right-0 bg-orange-dark text-white w-6 h-6 text-center leading-6 rounded-full">
             {{ cart.length }}
@@ -15,7 +15,7 @@ import cartAnimation from "../../../assets/images/card-animation.gif";
 
 export default {
     props: {
-        cart: Number
+        cart: Array
     },
     data() {
         return {

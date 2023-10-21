@@ -13,8 +13,8 @@ import '../assets/styles/style.scss'
 import '../assets/styles/main.scss'
 import '../assets/styles/moretoggles.min.css'
 import 'vue-select/dist/vue-select.css';
-// import '@splidejs/vue-splide/css';
-import '@splidejs/vue-splide/css/skyblue';
+import '@splidejs/vue-splide/css';
+// import '@splidejs/vue-splide/css/skyblue';
 // import '@splidejs/vue-splide/css/sea-green';
 
 

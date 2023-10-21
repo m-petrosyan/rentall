@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('brand_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title')->index();
-            $table->string('image')->nullable();
             $table->float('price');
             $table->text('description')->nullable();
             $table->boolean('slider')->default(false);

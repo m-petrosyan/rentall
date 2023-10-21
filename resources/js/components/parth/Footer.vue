@@ -1,5 +1,5 @@
 <template>
-    <div class="footer w-full bg-dark text-white py-16">
+    <div class="footer w-full bg-dark text-white py-16 s:px-10 md:px-16 lg:px-0">
         <div class="w-full h-60 flex justify-between gap-x-5 max-w-screen-lg mx-auto ">
             <div>
                 google map

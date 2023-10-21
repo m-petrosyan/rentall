@@ -2,7 +2,7 @@
     <div class="product-page" v-if="product && !loading">
         <div class="product flex md:gap-x-10 sm:gap-y-10 md:min-h-96 sm:flex-col md:flex-row">
             <div class="image s:h-96 md:h-auto md:w-1/2 sm:w-full bg-contain bg-no-repeat md:bg-left s:bg-top"
-                 :style="{backgroundImage: `url(${product.image})`}"/>
+                 :style="{backgroundImage: `url(${product.main_image})`}"/>
             <div class="info md:w-1/2  sm:w-full">
                 <h3 class="title font-bold">{{ product.title }}</h3>
                 <p class="price">{{ product.brand.title }}</p>
@@ -28,8 +28,27 @@
         </div>
         <div class="mt-16" v-html="product.description"/>
         <div class="flex mt-20 gap-x-6">
-            <ProductSimilarSliderComponent :products="product.similar_products"/>
+
+            <Splide :options="slider" aria-label="My Favorite Images"
+                    class="w-full h-64">
+                <SplideSlide v-for="slide in product.similar_products" :key="slide.id">
+                    <router-link :to="{name: 'product', params: { id: slide.id }}"
+                                 class="flex flex-col h-full">
+                        <div class="image flex items-center">
+                            <img :src="slide.main_image" alt="product">
+                        </div>
+                        <div class="flex flex-col gap-3 text-center">
+                            <h3 class="title font-bold">{{ slide.title }}</h3>
+                            <p class="price">{{ slide.price }}</p>
+                        </div>
+                        <!--                    <img :src="slide.slider_image" :alt="slide.title" class="w-screen">-->
+                    </router-link>
+                </SplideSlide>
+            </Splide>
+
         </div>
+        <!--        <ProductSimilarSliderComponent :products="product.similar_products"/>-->
+
     </div>
     <Preloader v-else/>
 </template>
@@ -49,13 +68,25 @@ export default {
     },
     data() {
         return {
+            slider: {
+                perPage: 4,
+                padding: '80px',
+                lazyLoad: true,
+                gap: '50px',
+                interval: 5000,
+                speed: 1000,
+                autoplay: true,
+                pauseOnHover: true,
+            },
             loading: true,
             count: 1,
             options: []
         }
     },
     created() {
-        this.getProductQuery().then(() => this.loading = false)
+        this.getProductQuery().then(() => {
+            this.loading = false
+        })
     },
     methods: {
         ...mapActions(['getProduct']),
@@ -66,7 +97,7 @@ export default {
             const data = {
                 id: this.product.id,
                 title: this.product.title,
-                image: this.product.image,
+                image: this.product.main_image,
                 options: this.options.filter(item => item.id),
                 price: this.totalPrice
             }
@@ -91,7 +122,9 @@ export default {
     watch: {
         $route(to, from) {
             if (from.params.id && to.params.id !== undefined && to.params.id !== from.params.id) {
-                this.getProductQuery()
+                this.getProductQuery().then(() => {
+                    this.slider.arrows = this.product?.similar_products.length > 4
+                })
             }
         }
     }
@@ -101,5 +134,7 @@ export default {
 
 
 <style scoped>
-
+.splide__arrow {
+    background: none !important;
+}
 </style>

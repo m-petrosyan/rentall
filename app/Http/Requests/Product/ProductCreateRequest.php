@@ -24,7 +24,8 @@ class ProductCreateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'min:2'],
-            'image' => ['required', 'mimes:jpeg,jpg,bmp,png,webp', 'max:2000'],
+            'main_image' => ['required', 'mimes:jpeg,jpg,bmp,png,webp', 'max:2000'],
+            'slider_image' => ['required', 'mimes:jpeg,jpg,bmp,png,webp', 'max:2000'],
             'description' => ['required', 'string', 'min:10'],
             'price' => ['required', 'numeric'],
             'slider' => ['nullable', 'boolean'],

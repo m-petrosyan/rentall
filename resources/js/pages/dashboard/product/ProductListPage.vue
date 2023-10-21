@@ -16,7 +16,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="product in products.data" :key="product.id"
+                        <tr v-for="product in products.data.products" :key="product.id"
                             class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                             <th scope="row"
                                 class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -62,7 +62,7 @@
                         </tbody>
                     </table>
                 </div>
-                <PaginationCreateComponent :meta="products.meta"  :page="this.paginate.page"/>
+                <PaginationCreateComponent :meta="products.meta" :page="this.paginate.page"/>
             </div>
         </div>
     </section>
@@ -131,7 +131,7 @@ export default {
     },
     methods: {
         ...mapActions(['getProducts']),
-        getProductsQuery(){
+        getProductsQuery() {
             this.getProducts(this.paginate)
                 .then(() => this.loading = false)
         }
@@ -144,9 +144,9 @@ export default {
             },
             deep: true
         },
-        $route  (to, from) {
-            if (to.name === from.name){
-                this.paginate.page =  +this.$route.params.page
+        $route(to, from) {
+            if (to.name === from.name) {
+                this.paginate.page = +this.$route.params.page
             }
         },
     }

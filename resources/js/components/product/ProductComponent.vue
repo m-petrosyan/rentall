@@ -1,9 +1,10 @@
 <template>
-    <router-link :to="{name: 'product', params: { id: product.id }}" class="product flex flex-col text-center"
+    <router-link :to="{name: 'product', params: { id: product.id }}"
+                 class="product flex flex-col text-center justify-between"
                  v-for="product in products"
                  :key="product.id">
-        <div class="image h-52 flex items-center">
-            <img class="w-full max-h-full" :src="product.main_image" alt="product">
+        <div class="image flex items-center h-full">
+            <img class="w-full" :src="product.main_image" alt="product">
         </div>
         <div class="flex flex-col gap-3">
             <h3 class="title font-bold">{{ product.title }}</h3>

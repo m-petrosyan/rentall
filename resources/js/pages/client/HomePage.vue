@@ -1,6 +1,6 @@
 <template>
     <div v-if="products && !loading">
-        <Splide v-if="products" :options="slider" aria-label="My Favorite Images"
+        <Splide v-if="products.data.slider" :options="slider" aria-label="My Favorite Images"
                 class="w-screen relative ml-50vw h-500px left-1/2">
             <SplideSlide v-for="slide in products.data.slider" :key="slide.id">
                 <router-link
@@ -13,7 +13,7 @@
         </Splide>
         <div class="content mt-10">
             <CategoryTopMenu/>
-            <div class="product-list mt-10" v-if="products">
+            <div class="product-list mt-10">
                 <div class="grid gap-10 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 s:grid-cols-1">
                     <ProductComponent :products="products.data.products"/>
                 </div>

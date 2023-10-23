@@ -33,7 +33,10 @@ module.exports = {
                 }
             }
         },
-        fontSize: {},
+        fontSize: {
+            sm: '13px',
+            base: '1px',
+        },
         colors: {
             'white': '#fff',
             'orange-dark': '#ff5722',

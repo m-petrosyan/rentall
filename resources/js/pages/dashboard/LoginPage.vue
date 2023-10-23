@@ -29,8 +29,53 @@
     </section>
 </template>
 
-<script setup>
-
+<script>
+import {email, minLength, required} from '@vuelidate/validators'
+import useVuelidate from "@vuelidate/core";
+export default {
+    // components: {ErrorMessages, PreloaderComponent},
+    data() {
+        return {
+            loading: false,
+            form: {
+                username: '',
+                password: ''
+            }
+        }
+    },
+    setup() {
+        return {v$: useVuelidate()}
+    },
+    validations() {
+        return {
+            form: {
+                username: {required, email},
+                password: {required, minLength: minLength(8)},
+            }
+        }
+    },
+    methods: {
+        signIn() {
+            this.v$.$touch()
+            if (!this.v$.$error) {
+                this.loading = true
+                this.$store.dispatch('signIn', this.form)
+                    .then(() => {
+                        this.$store.dispatch('auth').then(() => {
+                            this.$router.push({name: 'd-portfolio'})
+                        })
+                    })
+                    .finally(() => this.loading = false)
+            }
+        }
+    },
+    computed: {
+        error() {
+            return this.$store.getters.getAuthError
+        }
+    },
+}
+}
 </script>
 
 <style scoped>

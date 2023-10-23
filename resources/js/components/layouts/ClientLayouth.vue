@@ -9,7 +9,7 @@
 </template>
 <script>
 import CartButtonComponent from "@/components/elements/CartButtonComponent.vue";
-import Footer from "@/components/parth/Footer.vue";
+import Footer from "@/components/footer/Footer.vue";
 import MainTopMenu from "@/components/menu/MainTopMenu.vue";
 
 export default {

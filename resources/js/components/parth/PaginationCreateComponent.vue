@@ -1,6 +1,7 @@
 <template>
-    <div class="flex justify-between items-center">
-        <div>
+    <div class="flex  items-center" :class="button ? 'justify-between' : 'justify-center mt-10'"
+         v-if="meta.total > meta.per_page">
+        <div v-if="button">
             <button type="button"
                     class="py-2 px-3 text-center focus:outline-none text-white bg-blue-500">
                 Create
@@ -9,7 +10,7 @@
         <nav
             class="flex flex-col md:flex-row gap-x-5 justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
             aria-label="Table navigation">
-                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
+                        <span v-if="button" class="text-sm font-normal text-gray-500 dark:text-gray-400">
                             Showing
                             <span class="font-semibold text-gray-900 dark:text-white">{{ meta.per_page }}</span>
                             of
@@ -57,11 +58,14 @@
 export default {
     props: {
         meta: Object,
-        page: Number
+        page: Number,
+        route: String,
+        button: String
     },
     methods: {
         changePage(page) {
-            this.$router.push({ name: 'db-product',params:{page: page}})
+            this.$router.push({name: this.route ?? this.$route.name, params: {page: page}})
+            console.log(page)
         }
     },
     computed: {
@@ -76,7 +80,7 @@ export default {
 
             return paginationNumbers;
         },
-    }
+    },
 }
 </script>
 

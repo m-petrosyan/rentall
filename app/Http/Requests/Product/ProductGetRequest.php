@@ -25,6 +25,8 @@ class ProductGetRequest extends FormRequest
         return [
             'page' => ['required', 'numeric'],
             'limit' => ['required', 'numeric'],
+            'search' => ['nullable', 'string'],
+            'category' => ['nullable', 'exists:categories,id'],
         ];
     }
 }

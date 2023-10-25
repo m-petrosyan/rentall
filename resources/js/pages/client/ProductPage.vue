@@ -106,7 +106,7 @@ export default {
     },
     computed: {
         product() {
-            const product = this.$store.getters.getProduct
+            const product = this.$store.getters.product
             for (let i = 0; i < product?.kits.length; i++) {
                 this.options.push({price: 0})
             }

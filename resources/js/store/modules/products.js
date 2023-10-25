@@ -7,8 +7,8 @@ export default {
         productError: null,
     },
     getters: {
-        getProducts: state => state.products,
-        getProduct: state => state.product,
+        products: state => state.products,
+        product: state => state.product,
         getProductError: state => state.productError,
     },
     mutations: {

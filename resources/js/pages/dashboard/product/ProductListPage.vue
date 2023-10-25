@@ -62,7 +62,7 @@
                         </tbody>
                     </table>
                 </div>
-                <PaginationCreateComponent :meta="products.meta" :page="this.paginate.page"/>
+                <PaginationCreateComponent :meta="products.meta" :page="this.paginate.page" :button="'create'"/>
             </div>
         </div>
     </section>
@@ -109,9 +109,11 @@
 import {mapActions} from "vuex";
 import PaginationCreateComponent from "@/components/parth/PaginationCreateComponent.vue";
 import Preloader from "@/pages/other/Preloader.vue";
+import paginateMixin from "@/mixins/paginateMixin";
 
 export default {
     components: {Preloader, PaginationCreateComponent},
+    mixins: [paginateMixin],
     data() {
         return {
             loading: true,
@@ -143,11 +145,6 @@ export default {
                 this.getProducts(this.paginate).then(() => this.loading = false)
             },
             deep: true
-        },
-        $route(to, from) {
-            if (to.name === from.name) {
-                this.paginate.page = +this.$route.params.page
-            }
         },
     }
 }

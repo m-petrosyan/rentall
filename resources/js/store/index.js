@@ -1,5 +1,6 @@
 import {createStore} from 'vuex'
 import products from "@/store/modules/products";
+import category from "@/store/modules/category";
 
 export default createStore({
     state: {},
@@ -7,6 +8,7 @@ export default createStore({
     mutations: {},
     actions: {},
     modules: {
-        products
+        products,
+        category
     }
 })

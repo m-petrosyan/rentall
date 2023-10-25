@@ -32,7 +32,9 @@ class ProductController extends Controller
      */
     public function index(ProductGetRequest $request): ProductCollection
     {
-        return new ProductCollection(ProductRepository::getWithPaginate($request->limit, $request->page));
+        return new ProductCollection(
+            ProductRepository::getWithPaginate($request->limit, $request->page, $request->search, $request->category)
+        );
     }
 
     /**

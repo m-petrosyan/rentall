@@ -30,6 +30,11 @@ const routes = [
                 component: HomePage
             },
             {
+                path: ':page',
+                name: 'home-paginate',
+                component: HomePage
+            },
+            {
                 path: 'product/:id',
                 name: 'product',
                 component: ProductPage

@@ -10,7 +10,7 @@ interface ProductInterface
 
     public static function getSliders();
 
-    public static function getSumm(int $products);
+    public static function getSumm(array $products);
 
     public static function getUserProducts();
 }

@@ -34,10 +34,9 @@
 import {email, minLength, required} from '@vuelidate/validators'
 import useVuelidate from "@vuelidate/core";
 import ErrorMessages from "@/components/elements/ErrorMessages.vue";
-import Preloader from "@/pages/other/Preloader.vue";
 
 export default {
-    components: {ErrorMessages, Preloader},
+    components: {ErrorMessages},
     data() {
         return {
             loading: false,

@@ -1,9 +1,5 @@
-<script setup>
-
-</script>
-
 <template>
-    <div class="h-screen  flex items-center">
+    <div class="flex items-center  w-full ">
         <svg id="spinnerLoaderRef" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
              viewBox="0 0 100 100" width="250" height="250" overflow="visible" fill="#ff5463" stroke="none"
              class="single-loader mx-auto">
@@ -37,7 +33,3 @@
         </svg>
     </div>
 </template>
-
-<style scoped>
-
-</style>

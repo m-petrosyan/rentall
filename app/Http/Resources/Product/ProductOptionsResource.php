@@ -12,17 +12,17 @@ use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductEditResource extends JsonResource
+class ProductOptionsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
+     * @param  Request  $request
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
     {
         return [
-            'data' => new ProductResource($this),
             'kits' => new KitCollection(KitRepository::getAll()),
             'similars' => new ProductNameCollection(ProductRepository::getAll()),
             'categories' => new CategoryCollection(CategoryRepository::getAll()),

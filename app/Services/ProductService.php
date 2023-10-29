@@ -12,8 +12,8 @@ class ProductService extends FileService
      */
     public function store(array $attributes): void
     {
-        $kits = $attributes['kits'];
-        $similars = $attributes['similars'];
+        $kits = $attributes['kits'] ?? null;
+        $similars = $attributes['similars'] ?? null;
         $mainImage = $attributes['main_image'];
         $sliderImage = $attributes['slider_image'] ?? null;
         unset($attributes['kits'], $attributes['similars'], $attributes['main_image'], $attributes['slider_image']);

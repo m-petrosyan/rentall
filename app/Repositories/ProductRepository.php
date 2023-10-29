@@ -26,10 +26,10 @@ class ProductRepository implements ProductInterface
     }
 
     /**
-     * @param  int  $products
+     * @param  array  $products
      * @return mixed
      */
-    public static function getSumm(int $products): Collection
+    public static function getSumm(array $products): mixed
     {
         return Product::whereIn('id', $products)->sum('price');
     }
@@ -48,13 +48,13 @@ class ProductRepository implements ProductInterface
                 $query->where('title', 'LIKE', "%$search%");
             })->when($category, function ($query) use ($search, $category) {
                 $query->where('category_id', $category);
-            })->paginate($limit);
+            })->orderBy('id', 'asc')->paginate($limit);
     }
 
     /**
      * @return mixed
      */
-    public static function getUserProducts(): Collection
+    public static function getUserProducts(): mixed
     {
         return auth()->user()->products();
     }

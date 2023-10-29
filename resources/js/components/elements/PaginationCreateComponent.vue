@@ -2,10 +2,10 @@
     <div class="flex  items-center" :class="button ? 'justify-between' : 'justify-center mt-10'"
          v-if="meta.total > meta.per_page">
         <div v-if="button">
-            <button type="button"
-                    class="py-2 px-3 text-center focus:outline-none text-white bg-blue-500">
+            <router-link v-if="route" :to="{name: route}" type="button"
+                         class="py-2 px-3 text-center focus:outline-none text-white bg-blue-500">
                 Create
-            </button>
+            </router-link>
         </div>
         <nav
             class="flex flex-col md:flex-row gap-x-5 justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
@@ -31,7 +31,7 @@
                 </li>
                 <li v-for="pageNumber in paginationNumbers" :key="pageNumber"
                     :class="{ active: pageNumber === meta.current_page }">
-                    <button @click="changePage(pageNumber)"
+                    <button @click="meta.current_page !== pageNumber ? changePage(pageNumber) : null"
                             :class="{'z-10   text-primary-600  bg-primary-50  border-primary-300   hover:bg-primary-100' : meta.current_page === pageNumber}"
                             class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         {{ pageNumber }}
@@ -60,24 +60,22 @@ export default {
         meta: Object,
         page: Number,
         route: String,
-        button: String
+        button: String,
+        getData: Function,
     },
     methods: {
         changePage(page) {
-            this.$router.push({name: this.route ?? this.$route.name, params: {page: page}})
-            console.log(page)
+            this.$router.push({name: this.route && !this.button ? this.route : this.$route.name, params: {page: page}})
         }
     },
     computed: {
         paginationNumbers() {
             const start = Math.max(this.meta.current_page - 2, 1);
             const end = Math.min(start + 4, this.meta.last_page);
-
             const paginationNumbers = [];
             for (let i = start; i <= end; i++) {
                 paginationNumbers.push(i);
             }
-
             return paginationNumbers;
         },
     },

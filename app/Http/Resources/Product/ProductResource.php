@@ -27,7 +27,7 @@ class ProductResource extends JsonResource
             'brand' => new CategoryResource($this->brand),
             'category' => new CategoryResource($this->category),
             'kits' => new KitCollection($this->kits()->withRelations()),
-            'similar_products' => new ProductSimilarCollection($this->similars()->randomItem()),
+            'similars' => new ProductSimilarCollection($this->similars()->randomItem()),
         ];
     }
 }

@@ -63,12 +63,20 @@ class Product extends Model implements HasMedia
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * @param $query
      * @return mixed
      */
     public function scopeWithRelations($query): mixed
     {
-        return $query->with(['brand', 'category', 'kits']);
+        return $query->with(['brand', 'category', 'kits', 'user']);
     }
 
     /**

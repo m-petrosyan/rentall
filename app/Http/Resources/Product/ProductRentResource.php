@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Kit;
+namespace App\Http\Resources\Product;
 
-use App\Http\Resources\KitOption\KitOptionCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class KitResource extends JsonResource
+class ProductRentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,7 +17,8 @@ class KitResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'options' => new KitOptionCollection($this->options),
+            'price' => $this->price,
+            'main_image' => $this->getFirstMediaUrl('main_image'),
         ];
     }
 }

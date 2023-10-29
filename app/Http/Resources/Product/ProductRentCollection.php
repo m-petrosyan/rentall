@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources\Product;
 
-use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ProductCollection extends ResourceCollection
+class ProductRentCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -15,9 +14,6 @@ class ProductCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return [
-            'products' => parent::toArray($request),
-            'slider' => new ProductSliderCollection(ProductRepository::getSliders()),
-        ];
+        return parent::toArray($request);
     }
 }

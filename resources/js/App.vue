@@ -1,17 +1,17 @@
 <template>
-    <router-view :setStorage="setStorage" :cart="cart"/>
+    <router-view class="h-screen" :setStorage="setStorage" :cart="cart"/>
 </template>
 
 <script>
 import storageMixin from "@/mixins/storageMixin";
 
+
 export default {
-    mixins: [storageMixin]
+    mixins: [storageMixin],
+    mounted() {
+        if (sessionStorage.getItem('token')) {
+            this.$store.dispatch('auth').catch(() => this.$router.push({name: 'login'}))
+        }
+    },
 }
 </script>
-
-
-<style scoped>
-
-
-</style>

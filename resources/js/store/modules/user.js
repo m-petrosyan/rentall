@@ -36,13 +36,16 @@ export default {
                 });
         },
         signIn({commit}, data) {
-            return postRequest('/user/login', data)
-                .then(response => {
-                    commit("setToken", response.token)
-                    commit('setUserError', null)
-                })
+            return postRequest('/oauth/token', {
+                username: data.username,
+                password: data.password,
+                grant_type: 'password',
+                client_id: import.meta.env.VITE_APP_CLIENT_ID,
+                client_secret: import.meta.env.VITE_APP_CLIENT_SECRET
+            })
+                .then(response => commit("setToken", response.access_token))
                 .catch(error => {
-                    commit('setUserError', error.message)
+                    commit('setAuthError', error.message)
                     return Promise.reject(error)
                 });
         },

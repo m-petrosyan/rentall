@@ -28,10 +28,9 @@
         </div>
         <div class="mt-16" v-html="product.description"/>
         <div class="flex mt-20 gap-x-6">
-
-            <Splide :options="slider" aria-label="My Favorite Images"
+            <Splide v-if="product.similars.length" :options="slider" aria-label="My Favorite Images"
                     class="w-full h-64">
-                <SplideSlide v-for="slide in product.similar_products" :key="slide.id">
+                <SplideSlide v-for="slide in product.similars" :key="slide.id">
                     <router-link :to="{name: 'product', params: { id: slide.id }}"
                                  class="flex flex-col h-full">
                         <div class="image flex items-center">
@@ -45,7 +44,6 @@
                     </router-link>
                 </SplideSlide>
             </Splide>
-
         </div>
         <!--        <ProductSimilarSliderComponent :products="product.similar_products"/>-->
 
@@ -59,7 +57,8 @@ import {mapActions} from "vuex";
 import ProductComponent from "@/components/product/ProductComponent.vue";
 import ProductSimilarSliderComponent from "@/components/product/ProductSimilarSliderComponent.vue";
 import CountButton from "@/components/elements/CountButton.vue";
-import Preloader from "@/pages/other/Preloader.vue";
+import Preloader from "@/components/elements/Preloader.vue";
+
 
 export default {
     components: {Preloader, CountButton, ProductComponent, ProductSimilarSliderComponent},
@@ -91,7 +90,8 @@ export default {
     methods: {
         ...mapActions(['getProduct']),
         getProductQuery() {
-            return this.getProduct(this.$route.params.id)
+            this.loading = true
+            return this.getProduct(this.$route.params.id).then(() => this.loading = false)
         },
         addToCart() {
             const data = {

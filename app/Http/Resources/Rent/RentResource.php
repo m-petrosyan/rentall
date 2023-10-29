@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Rent;
 
-use App\Http\Resources\Product\ProductCollection;
+use App\Http\Resources\Product\ProductRentCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,7 +23,7 @@ class RentResource extends JsonResource
             'total_price' => $this->products()->sum('price'),
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'products' => new ProductCollection($this->products->load(['brand', 'category'])),
+            'products' => new ProductRentCollection($this->products()->withRelations()->get()),
         ];
     }
 }

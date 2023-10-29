@@ -17,7 +17,6 @@ class ProductSliderResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'description' => $this->description,
             'slider_image' => $this->getFirstMediaUrl('slider_image'),
         ];
     }

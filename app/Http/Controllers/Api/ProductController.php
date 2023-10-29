@@ -8,10 +8,12 @@ use App\Http\Requests\Product\ProductGetRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductEditResource;
+use App\Http\Resources\Product\ProductOptionsResource;
 use App\Http\Resources\Product\ProductResource;
 use App\Models\Product;
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
@@ -54,11 +56,17 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  Product  $product
-     * @return ProductEditResource
+     * @return ProductResource
      */
-    public function edit(Product $product): ProductEditResource
+    public function edit(Product $product): ProductResource
     {
-        return new ProductEditResource($product);
+        return new ProductResource($product);
+    }
+
+
+    public function options(Request $request): ProductOptionsResource
+    {
+        return new ProductOptionsResource($request);
     }
 
 

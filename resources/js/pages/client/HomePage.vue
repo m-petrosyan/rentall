@@ -1,7 +1,7 @@
 <template>
     <div v-if="products && !loading">
         <Splide v-if="products.data.slider" :options="slider" aria-label="My Favorite Images"
-                class="w-screen relative ml-50vw h-500px left-1/2">
+                class="w-screen relative ml-50vw h-500px left-1/2 s:hidden md:block">
             <SplideSlide v-for="slide in products.data.slider" :key="slide.id">
                 <router-link
                     :to="{name: 'product', params: { id: slide.id }}"
@@ -11,33 +11,39 @@
             </SplideSlide>
         </Splide>
         <div class="content mt-10">
-            <input type="search" v-model="search" class="mx-auto block rounded-full border-gray-100"
+            <input type="search" v-model="paginate.search"
+                   class="mx-auto block rounded-full border-gray-100 bg-gray-100"
                    placeholder="type here..."/>
             <CategoryTopMenu :categories="categories" v-model:category="paginate.category"
-                             v-model:search="search"/>
+                             v-model:search="paginate.search"/>
             <div class="product-list mt-10">
                 <div class="grid gap-10 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 s:grid-cols-1">
                     <ProductComponent :products="products.data.products"/>
                 </div>
             </div>
         </div>
-        <PaginationCreateComponent :meta="products.meta" :page="this.paginate.page" :route="'home-paginate'"/>
+        <PaginationCreateComponent
+            :meta="products.meta"
+            :page="this.paginate.page"
+            :route="'home-paginate'"
+            :getData="getData"
+        />
     </div>
     <Preloader v-else/>
 </template>
 
 <script>
 import {mapActions, mapGetters} from "vuex";
+import {SplideSlide} from '@splidejs/vue-splide';
+import {debounce} from 'vue-debounce'
 import CategoryTopMenu from "@/components/menu/CategoryTopMenu.vue";
 import ProductComponent from "@/components/product/ProductComponent.vue";
-import {SplideSlide} from '@splidejs/vue-splide';
-import Preloader from "@/pages/other/Preloader.vue";
-import {debounce} from 'vue-debounce'
-import PaginationCreateComponent from "@/components/parth/PaginationCreateComponent.vue";
+import PaginationCreateComponent from "@/components/elements/PaginationCreateComponent.vue";
 import paginateMixin from "@/mixins/paginateMixin";
+import Preloader from "@/components/elements/Preloader.vue";
 
 export default {
-    components: {PaginationCreateComponent, Preloader, ProductComponent, CategoryTopMenu, SplideSlide},
+    components: {Preloader, PaginationCreateComponent, ProductComponent, CategoryTopMenu, SplideSlide},
     mixins: [paginateMixin],
     data() {
         return {
@@ -54,45 +60,67 @@ export default {
             paginate: {
                 category: null,
                 limit: 12,
-                page: this.$route.params?.page ?? 1
+                page: this.$route.params?.page ?? 1,
+                search: null,
             },
-            search: null,
+
             loading: true,
+            actions: ['getProducts', 'getCategories']
         }
     },
     mounted() {
         this.getCategories()
-        this.getProductsQuery()
+        this.getData().then(() => {
+            this.loading = false
+        })
         this.debouncedFetch = debounce(() => {
-            this.loading = true
-            this.getProductsQuery()
-        }, 1000);
+            this.paginate.page = 1
+            this.getData()
+        }, 1500);
     },
     computed: {
         ...mapGetters(['categories', 'products']),
     },
     methods: {
         ...mapActions(['getProducts', 'getCategories']),
-        getProductsQuery() {
-            this.loading = true
-            this.getProducts({...this.paginate, search: this.search}).then(() => {
-                this.loading = false
-            })
+        async getData() {
+            return await this.getProducts({...this.paginate})
         }
     },
     watch: {
-        paginate: {
-            handler(newValue, oldValue) {
-                console.log(newValue, oldValue)
+        // category() {
+        //     alert()
+        //     this.getData()
+        // },
+        "paginate.search": {
+            handler(val, oldVal) {
+                this.paginate.category = null
                 this.debouncedFetch()
             },
-            deep: true
         },
-        search(newValue, oldValue) {
-            this.paginate.category = null
-            this.$router.push({name: 'home-paginate', params: {page: 1}})
-            this.debouncedFetch()
+        "paginate.category": {
+            handler(val, oldVal) {
+                this.getData()
+            },
         },
+        "paginate.page": {
+            handler(val, oldVal) {
+                this.getData()
+            },
+        },
+        // paginate: {
+        //     handler(newValue, oldValue) {
+        //         // this.loading = true
+        //         console.log(newValue, oldValue)
+        //         this.debouncedFetch()
+        //     },
+        //     deep: true
+        // },
+        // search(newValue, oldValue) {
+        //     this.paginate.category = null
+        //     // this.$router.push({name: 'home-paginate', params: {page: 1}})
+        //     this.debouncedFetch()
+        // },
     },
 }
 </script>

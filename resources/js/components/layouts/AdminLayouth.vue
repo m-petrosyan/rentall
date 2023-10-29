@@ -1,5 +1,5 @@
 <template>
-    <main class="w-full mx-auto ">
+    <main class="w-full mx-auto">
         <router-view/>
     </main>
 </template>

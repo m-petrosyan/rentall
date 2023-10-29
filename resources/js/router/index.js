@@ -19,91 +19,105 @@ import ProductCreateEditPage from "@/pages/dashboard/product/ProductCreateEditPa
 import NotFound404 from "@/pages/other/NotFound404.vue";
 
 
-const routes = [
-    {
-        path: '/',
-        component: ClientLayouth,
-        children: [
-            {
-                path: '',
-                name: 'home',
-                component: HomePage
-            },
-            {
-                path: ':page',
-                name: 'home-paginate',
-                component: HomePage
-            },
-            {
-                path: 'product/:id',
-                name: 'product',
-                component: ProductPage
-            },
-            {
-                path: 'cart',
-                name: 'cart',
-                component: CartPage
-            },
-        ],
-
-    },
-    {
-        path: '/',
-        component: AdminLayouth,
-        children: [
-            {
-                path: 'login',
-                name: 'login',
-                component: LoginPage
-            },
-            {
-                path: 'dashboard',
-                name: 'dashboard',
-                component: Dashboard,
-                children: [
-                    {
-                        path: '',
-                        name: 'db-category',
-                        component: CategoryListPage,
-                    },
-                    {
-                        path: 'product',
-                        children: [
-                            {
-                                path: ':page',
-                                name: 'db-product',
-                                component: ProductListPage,
-                            },
-                            {
-                                path: 'create',
-                                name: 'db-productcreate',
-                                component: ProductCreateEditPage,
-                            },
-                            {
-                                path: ':id/update',
-                                name: 'db-productupdate',
-                                component: ProductCreateEditPage,
-                            }
-                        ]
-                    },
-                ]
-            }
-        ]
-    },
-    {
-        path: '/:pathMatch(.*)*',
-        name: '404',
-        component: NotFound404
-    },
-]
-
-
 const router = createRouter({
     history: createWebHistory(),
-    routes,
+    routes: [
+        {
+            path: '/',
+            component: ClientLayouth,
+            children: [
+                {
+                    path: '',
+                    name: 'home',
+                    component: HomePage
+                },
+                {
+                    path: ':page',
+                    name: 'home-paginate',
+                    component: HomePage
+                },
+                {
+                    path: 'product/:id',
+                    name: 'product',
+                    component: ProductPage
+                },
+                {
+                    path: 'cart',
+                    name: 'cart',
+                    component: CartPage
+                },
+            ],
+
+        },
+        {
+            path: '/',
+            component: AdminLayouth,
+            children: [
+                {
+                    path: 'login',
+                    name: 'login',
+                    component: LoginPage
+                },
+                {
+                    path: 'dashboard',
+                    name: 'dashboard',
+                    component: Dashboard,
+                    meta: {requiresAuth: true},
+                    children: [
+                        {
+                            path: '',
+                            name: 'db-category',
+                            component: CategoryListPage,
+                        },
+                        {
+                            path: 'product',
+                            children: [
+                                {
+                                    path: ':page',
+                                    name: 'db-product',
+                                    component: ProductListPage,
+                                },
+                                {
+                                    path: 'create',
+                                    name: 'db-productcreate',
+                                    component: ProductCreateEditPage,
+                                },
+                                {
+                                    path: ':id/update',
+                                    name: 'db-productupdate',
+                                    component: ProductCreateEditPage,
+                                }
+                            ]
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            name: '404',
+            component: NotFound404
+        },
+    ],
     scrollBehavior() {
         return {top: 0}
     },
 })
 
-export default router
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta?.requiresAuth)) {
+        if (!sessionStorage.getItem('token')) {
+            next({
+                name: 'login',
+                query: {redirect: to.fullPath}
+            })
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
+})
+
+
+export default router;

@@ -1,7 +1,7 @@
 <template>
-    <section v-if="products && !loading" class="p-3 sm:p-5 h-screen">
+    <section class="p-3 sm:p-5 h-screen">
         <h2>Products</h2>
-        <div class="mx-auto mt-10 max-w-screen-2xl">
+        <div v-if="products" class="mx-auto mt-10 max-w-screen-2xl">
             <div class="flex flex-col gap-y-10 justify-between bg-white relative overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -22,13 +22,13 @@
                                 class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="flex items-center mr-3">
                                     <img
-                                        src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png"
+                                        :src="product.main_image"
                                         alt="iMac Front Image" class="h-8 w-auto mr-3">
                                     {{ product.title }}
                                 </div>
                             </th>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                                {{ product.category.title }}
+                                {{ product.category?.title }}
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                                 {{ product.brand.title }}
@@ -62,12 +62,16 @@
                         </tbody>
                     </table>
                 </div>
-                <PaginationCreateComponent :meta="products.meta" :page="this.paginate.page" :button="'create'"/>
+                <PaginationCreateComponent
+                    :meta="products.meta"
+                    :page="this.paginate.page"
+                    :button="true"
+                    :route="'db-productcreate'"
+                />
             </div>
         </div>
+        <Preloader v-else/>
     </section>
-    <Preloader v-else/>
-    <!-- Delete Modal -->
     <div id="delete-modal" tabindex="-1"
          class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full h-auto max-w-md max-h-full">
@@ -106,10 +110,11 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
-import PaginationCreateComponent from "@/components/parth/PaginationCreateComponent.vue";
-import Preloader from "@/pages/other/Preloader.vue";
+import {mapActions, mapGetters} from "vuex";
+import PaginationCreateComponent from "@/components/elements/PaginationCreateComponent.vue";
 import paginateMixin from "@/mixins/paginateMixin";
+import Preloader from "@/components/elements/Preloader.vue";
+
 
 export default {
     components: {Preloader, PaginationCreateComponent},
@@ -124,16 +129,14 @@ export default {
         }
     },
     created() {
-        this.getProductsQuery()
+        this.getData()
     },
     computed: {
-        products() {
-            return this.$store.getters.getProducts
-        }
+        ...mapGetters(['products'])
     },
     methods: {
         ...mapActions(['getProducts']),
-        getProductsQuery() {
+        getData() {
             this.getProducts(this.paginate)
                 .then(() => this.loading = false)
         }

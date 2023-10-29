@@ -11,7 +11,7 @@ module.exports = {
                 '50vw': '-50vw'
             },
             height: {
-                // 100: '580px',
+                slider: '500px',
             },
             minHeight: {
                 96: '384px',
@@ -47,6 +47,7 @@ module.exports = {
             'grey-blue': '#3d86c9',
             'green': '#4caf50',
             'grey': '#dcdcdc',
+            'black': '#000'
             // 'dark': 'rgba(0, 0, 0, 0.11)',
             // 'dark-grey': 'rgba(61, 61, 61, 0.11)',
         },

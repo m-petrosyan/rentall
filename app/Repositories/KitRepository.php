@@ -14,7 +14,7 @@ class KitRepository implements KitInterface
      */
     public static function getAll(): Collection
     {
-        return Kit::withRelations();
+        return Kit::withRelations()->get();
     }
 
     public static function getPaginate(int $limit, int $page): Paginator

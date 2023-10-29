@@ -1,5 +1,9 @@
 <template>
     <div class="footer w-full bg-dark text-white py-16 s:px-10 md:px-16 lg:px-0">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10250.07126958896!2d44.499661874246925!3d40.20143352779897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abd3f510bb239%3A0x325b0b7b511f7f55!2sRIO%20Mall!5e0!3m2!1sen!2sam!4v1698599909748!5m2!1sen!2sam"
+            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         <div
             class="w-full md:h-60 flex s:flex-col lg:flex-row s:gap-y-10 justify-between gap-x-5 max-w-screen-lg mx-auto ">
             <div class="s:hidden sm:block sm:w-5/6">

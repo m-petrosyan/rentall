@@ -170,7 +170,6 @@
 import {mapActions, mapGetters} from "vuex";
 import Preloader from "@/components/elements/Preloader.vue";
 import ErrorMessages from "@/components/elements/ErrorMessages.vue";
-import {minLength, numeric, required} from "@vuelidate/validators";
 
 import useVuelidate from "@vuelidate/core";
 
@@ -188,13 +187,13 @@ export default {
     setup() {
         return {v$: useVuelidate()}
     },
-    validations: {
-        validateData: {
-            title: {required},
-            price: {required, numeric},
-            description: {required, minLength: minLength(10)},
-        }
-    },
+    // validations: {
+    //     validateData: {
+    //         title: {required},
+    //         price: {required, numeric},
+    //         description: {required, minLength: minLength(10)},
+    //     }
+    // },
     created() {
         this.getData()
     },

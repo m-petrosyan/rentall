@@ -48,7 +48,7 @@ class ProductRepository implements ProductInterface
                 $query->where('title', 'LIKE', "%$search%");
             })->when($category, function ($query) use ($search, $category) {
                 $query->where('category_id', $category);
-            })->orderBy('id', 'asc')->paginate($limit);
+            })->orderBy('id', 'desc')->paginate($limit);
     }
 
     /**

@@ -86,7 +86,7 @@
                         <div class="img-content">
                             <span
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Image</span>
-                            <div class="flex justify-center items-center w-full cover bg-center bg-no-repeat"
+                            <div class="flex justify-center items-center w-full bg-contain bg-center bg-no-repeat"
                                  :style="{backgroundImage : `url(${main_image_preview})`}">
                                 <label for="main_image"
                                        class="flex flex-col justify-center items-center w-full h-slider  rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -170,7 +170,7 @@
 import {mapActions, mapGetters} from "vuex";
 import Preloader from "@/components/elements/Preloader.vue";
 import ErrorMessages from "@/components/elements/ErrorMessages.vue";
-import {numeric, required} from "@vuelidate/validators";
+import {minLength, numeric, required} from "@vuelidate/validators";
 
 import useVuelidate from "@vuelidate/core";
 
@@ -192,7 +192,7 @@ export default {
         validateData: {
             title: {required},
             price: {required, numeric},
-            description: {required},
+            description: {required, minLength: minLength(10)},
         }
     },
     created() {
@@ -238,7 +238,7 @@ export default {
                     data.append("similars[]", similar.id);
                 }
 
-                this.createProduct(data).then(() => this.ordered = true)
+                this.createProduct(data).then(() => this.$router.push({name: 'db-product', params: {page: 1}}))
             }
         }
     },

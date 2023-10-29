@@ -40,6 +40,6 @@ class Kit extends Model
      */
     public function scopeWithRelations($query): mixed
     {
-        return $query->with(['options'])->get();
+        return $query->with(['options']);
     }
 }

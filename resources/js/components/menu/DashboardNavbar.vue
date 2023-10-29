@@ -2,7 +2,7 @@
     <section class="bg-dark-grey text-white">
         <ul class="flex flex-col gap-y-5 mx-auto mt-10 w-8/12">
             <li>
-                <router-link :to="{name:'db-category'}" class="flex gap-x-2">
+                <router-link :to="{name:'db-category',params:{page: 1}}" class="flex gap-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -14,17 +14,17 @@
                 </router-link>
             </li>
             <li>
-                <div class="flex gap-x-2">
+                <router-link :to="{name:'db-brand',params:{page: 1}}" class="flex gap-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"/>
                     </svg>
                     <h3>Brand</h3>
-                </div>
+                </router-link>
             </li>
             <li>
-                <div class="flex gap-x-2">
+                <router-link :to="{name:'db-kit',params:{page: 1}}" class="flex gap-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -32,7 +32,7 @@
                     </svg>
 
                     <h3>Kit</h3>
-                </div>
+                </router-link>
             </li>
             <li>
                 <router-link :to="{name:'db-product',params:{page: 1}}" class="flex gap-x-2">
@@ -46,14 +46,14 @@
                     <h3>Product</h3>
                 </router-link>
             </li>
-            <li class="flex gap-x-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
-                </svg>
-                <h3>Rent</h3>
-            </li>
+            <!--            <li class="flex gap-x-2">-->
+            <!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+            <!--                     stroke="currentColor" class="w-6 h-6">-->
+            <!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
+            <!--                          d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>-->
+            <!--                </svg>-->
+            <!--                <h3>Rent</h3>-->
+            <!--            </li>-->
         </ul>
     </section>
 </template>

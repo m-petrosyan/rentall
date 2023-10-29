@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Kit\KitCreateRequest;
+use App\Http\Requests\Kit\KitGetRequest;
 use App\Http\Requests\Kit\KitUpdateRequest;
 use App\Http\Resources\Kit\KitCollection;
 use App\Http\Resources\Kit\KitResource;
@@ -27,11 +28,12 @@ class KitController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  KitGetRequest  $request
      * @return KitCollection
      */
-    public function index(): KitCollection
+    public function index(KitGetRequest $request): KitCollection
     {
-        return new KitCollection(KitRepository::getAll());
+        return new KitCollection(KitRepository::getPaginate($request->limit, $request->page));
     }
 
     /**

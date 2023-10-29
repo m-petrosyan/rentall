@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Brand\BrandCreateRequest;
+use App\Http\Requests\Brand\BrandGetRequest;
 use App\Http\Requests\Brand\BrandUpdateRequest;
 use App\Http\Resources\Brand\BrandCollection;
 use App\Http\Resources\Brand\BrandResource;
@@ -27,11 +28,12 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  BrandGetRequest  $request
      * @return BrandCollection
      */
-    public function index(): BrandCollection
+    public function index(BrandGetRequest $request): BrandCollection
     {
-        return new BrandCollection(BrandRepository::getAll());
+        return new BrandCollection(BrandRepository::getPaginate($request->limit, $request->page));
     }
 
 

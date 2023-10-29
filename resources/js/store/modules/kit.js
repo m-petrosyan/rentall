@@ -2,10 +2,10 @@ import {getRequest} from "@/store/api";
 
 export default {
     state: {
-        categories: null,
+        kits: null,
     },
     getters: {
-        categories: state => state.categories,
+        kits: state => state.kits,
         // getProduct: state => state.product,
         // getProductError: state => state.productError,
     },
@@ -13,18 +13,18 @@ export default {
         // setCategoryError(state, data) {
         //     state.productError = data
         // },
-        setCategories(state, data) {
-            state.categories = data
+        setKit(state, data) {
+            state.kits = data
         },
         // setProduct(state, data) {
         //     state.product = data
         // },
     },
     actions: {
-        getCategories({commit}, paginate) {
-            return getRequest(`/category`, paginate)
+        getKits({commit}, paginate) {
+            return getRequest(`/kit`, paginate)
                 .then(response => {
-                    commit("setCategories", response)
+                    commit("setKit", response)
                     // commit('setProductError', null)
                 })
                 .catch(error => {

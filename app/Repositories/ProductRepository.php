@@ -22,7 +22,7 @@ class ProductRepository implements ProductInterface
      */
     public static function getSliders(): Collection
     {
-        return Product::where('slider', 1)->get();
+        return Product::where('slider', 1)->orderBy('id', 'desc')->get();
     }
 
     /**
@@ -43,6 +43,8 @@ class ProductRepository implements ProductInterface
      */
     public static function getWithPaginate(int $limit, int $page, string|null $search, int|null $category): Paginator
     {
+//        dd($limit, $page, $search, $category);
+
         return Product::withRelations()->take($page)
             ->when($search, function ($query) use ($search) {
                 $query->where('title', 'LIKE', "%$search%");

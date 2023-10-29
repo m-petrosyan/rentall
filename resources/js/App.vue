@@ -1,5 +1,5 @@
 <template>
-    <router-view class="h-screen" :setStorage="setStorage" :cart="cart"/>
+    <router-view class="min:h-screen" :setStorage="setStorage" :cart="cart"/>
 </template>
 
 <script>

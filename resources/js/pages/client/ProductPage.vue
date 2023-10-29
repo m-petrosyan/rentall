@@ -1,9 +1,9 @@
 <template>
     <div class="product-page" v-if="product && !loading">
-        <div class="product flex md:gap-x-10 sm:gap-y-10 md:min-h-96 sm:flex-col md:flex-row">
-            <div class="image s:h-96 md:h-auto md:w-1/2 sm:w-full bg-contain bg-no-repeat md:bg-left s:bg-top"
+        <div class="product flex md:gap-x-10 sm:gap-y-10 md:min-h-96 s:flex-col md:flex-row">
+            <div class="image s:h-96 md:h-auto md:w-1/2 s:w-full bg-contain bg-no-repeat md:bg-left s:bg-top"
                  :style="{backgroundImage: `url(${product.main_image})`}"/>
-            <div class="info md:w-1/2  sm:w-full">
+            <div class="info md:w-1/2  s:w-full">
                 <h3 class="title font-bold">{{ product.title }}</h3>
                 <p class="price">{{ product.brand.title }}</p>
                 <h2 class="title mt-4 font-bold">{{ totalPrice }} AMD</h2>
@@ -68,7 +68,7 @@ export default {
     data() {
         return {
             slider: {
-                perPage: 4,
+                perPage: window.innerWidth > 860 ? 4 : window.innerWidth > 580 ? 2 : 1,
                 padding: '80px',
                 lazyLoad: true,
                 gap: '50px',

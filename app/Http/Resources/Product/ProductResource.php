@@ -26,7 +26,7 @@ class ProductResource extends JsonResource
             'slider' => $this->slider,
             'brand' => new CategoryResource($this->brand),
             'category' => new CategoryResource($this->category),
-            'kits' => new KitCollection($this->kits()->withRelations()),
+            'kits' => new KitCollection($this->kits()->withRelations()->get()),
             'similars' => new ProductSimilarCollection($this->similars()->randomItem()),
         ];
     }

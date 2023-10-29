@@ -1,9 +1,10 @@
 <template>
     <div class="footer w-full bg-dark text-white py-16 s:px-10 md:px-16 lg:px-0">
-        <div class="w-full h-60 flex justify-between gap-x-5 max-w-screen-lg mx-auto ">
-            <div class="w-5/6">
+        <div
+            class="w-full md:h-60 flex s:flex-col lg:flex-row s:gap-y-10 justify-between gap-x-5 max-w-screen-lg mx-auto ">
+            <div class="s:hidden sm:block sm:w-5/6">
                 <GoogleMap
-                    class="w-full h-full"
+                    class="w-full lg:h-full s:h-48"
                     :api-key="options.apiKey"
                     :styles="[{theme: options.markers.theme}]"
                     mapTypeId="terrain"

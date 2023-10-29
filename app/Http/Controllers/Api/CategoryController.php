@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryCreateRequest;
+use App\Http\Requests\Category\CategoryGetRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
 use App\Http\Resources\Category\CategoryCollection;
 use App\Http\Resources\Category\CategoryResource;
@@ -28,11 +29,12 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  CategoryGetRequest  $request
      * @return CategoryCollection
      */
-    public function index(): CategoryCollection
+    public function index(CategoryGetRequest $request): CategoryCollection
     {
-        return new CategoryCollection(CategoryRepository::getAll());
+        return new CategoryCollection(CategoryRepository::getPaginate($request->limit, $request->page));
     }
 
     /**

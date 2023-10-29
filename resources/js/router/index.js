@@ -17,6 +17,8 @@ import ProductCreateEditPage from "@/pages/dashboard/product/ProductCreateEditPa
 
 //other
 import NotFound404 from "@/pages/other/NotFound404.vue";
+import BrandListPage from "@/pages/dashboard/brand/BrandListPage.vue";
+import KitListPage from "@/pages/dashboard/Kit/KitListPage.vue";
 
 
 const router = createRouter({
@@ -64,10 +66,40 @@ const router = createRouter({
                     component: Dashboard,
                     meta: {requiresAuth: true},
                     children: [
+                        // {
+                        //     path: '',
+                        //     name: 'db-category',
+                        //     component: CategoryListPage,
+                        // },
                         {
-                            path: '',
-                            name: 'db-category',
-                            component: CategoryListPage,
+                            path: 'category',
+                            children: [
+                                {
+                                    path: ':page',
+                                    name: 'db-category',
+                                    component: CategoryListPage,
+                                },
+                            ]
+                        },
+                        {
+                            path: 'brand',
+                            children: [
+                                {
+                                    path: ':page',
+                                    name: 'db-brand',
+                                    component: BrandListPage,
+                                },
+                            ]
+                        },
+                        {
+                            path: 'kit',
+                            children: [
+                                {
+                                    path: ':page',
+                                    name: 'db-kit',
+                                    component: KitListPage,
+                                },
+                            ]
                         },
                         {
                             path: 'product',

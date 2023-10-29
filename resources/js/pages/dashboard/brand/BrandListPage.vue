@@ -1,28 +1,28 @@
 <template>
     <section class="p-3 sm:p-5 h-screen">
-        <h2>Categories</h2>
-        <div v-if="categories" class="mx-auto mt-10 max-w-screen-2xl">
+        <h2>Brand</h2>
+        <div v-if="brands" class="mx-auto mt-10 max-w-screen-2xl">
             <div class="flex flex-col gap-y-10 justify-between bg-white relative overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs ppercase">
                         <tr>
-                            <th scope="col" class="p-4">Category</th>
+                            <th scope="col" class="p-4">Brand</th>
                             <th scope="col" class="p-4">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="category in categories.data" :key="category.id"
+                        <tr v-for="brand in brands.data" :key="brand.id"
                             class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                             <th scope="row"
                                 class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="flex items-center mr-3">
-                                    {{ category.title }}
+                                    {{ brand.title }}
                                 </div>
                             </th>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="flex items-center space-x-4">
-                                    <router-link :to="{name:'db-productupdate',params:{id: category.id}}" type="button"
+                                    <router-link :to="{name:'db-productupdate',params:{id: brand.id}}" type="button"
                                                  class="py-2 px-3 text-center focus:outline-none text-white bg-grey-blue rounded">
                                         Edit
                                     </router-link>
@@ -37,7 +37,7 @@
                     </table>
                 </div>
                 <PaginationCreateComponent
-                    :meta="categories.meta"
+                    :meta="brands.meta"
                     :page="this.paginate.page"
                     :button="true"
                     :route="'db-productcreate'"
@@ -97,7 +97,7 @@ export default {
         return {
             loading: true,
             paginate: {
-                limit: 30,
+                limit: 10,
                 page: +this.$route.params.page
             }
         }
@@ -106,12 +106,12 @@ export default {
         this.getData()
     },
     computed: {
-        ...mapGetters(['categories'])
+        ...mapGetters(['brands'])
     },
     methods: {
-        ...mapActions(['getCategories']),
+        ...mapActions(['getBrands']),
         getData() {
-            this.getCategories(this.paginate)
+            this.getBrands(this.paginate)
                 .then(() => this.loading = false)
         }
     },
@@ -119,7 +119,7 @@ export default {
         paginate: {
             handler() {
                 this.loading = true
-                this.getCategories(this.paginate).then(() => this.loading = false)
+                this.getBrands(this.paginate).then(() => this.loading = false)
             },
             deep: true
         },

@@ -65,7 +65,7 @@ export default {
                 this.$store.dispatch('signIn', this.form)
                     .then(() => {
                         this.$store.dispatch('auth').then(() => {
-                            this.$router.push({name: 'dashboard'})
+                            this.$router.push({name: 'db-category', params: {page: 1}})
                         })
                     })
                     .finally(() => this.loading = false)

@@ -4,11 +4,14 @@
             <h3 class="font-bold">Your order</h3>
             <hr class="mt-5">
             <div class="flex flex-col gap-y-5 mt-5">
-                <div class="flex justify-between " v-for="(item,index) in cartData" :key="item.id">
-                    <router-link :to="{name: 'product', params: {id: item.id}}" class="flex gap-x-5 w-4/6">
-                        <div class="w-5/12 s:h-32  md:h-40 bg-contain bg-no-repeat"
-                             :style="{backgroundImage: `url(${item.image})`}"></div>
-                        <div class="w-auto">
+                <div class="flex justify-between s:flex-col sm:flex-row" v-for="(item,index) in cartData"
+                     :key="item.id">
+                    <router-link :to="{name: 'product', params: {id: item.id}}"
+                                 class="flex gap-x-5 s:gap-y-5 sm:gap-y-0 sm:w-4/6 s:flex-col sm:flex-row s:w-full s:text-center sm:text-left">
+                        <div
+                            class="s:h-48  md:h-40 bg-contain bg-no-repeat sm:flex-row s:w-full sm:w-5/12 s:text-center sm:text-left s:bg-center sm:bg-left"
+                            :style="{backgroundImage: `url(${item.image})`}"></div>
+                        <div class="w-auto s:mx-auto sm:mx-0">
                             <h3 class="title font-bold">{{ item.title }}</h3>
                             <div class="" v-for="el in item.options" :key="item.id">
                                 <div class="flex justify-between">
@@ -17,10 +20,10 @@
                             </div>
                         </div>
                     </router-link>
-                    <div class="w-1/6">
+                    <div class="w-1/6 s:mx-auto s:mt-2 sm:mt-0">
                         <CountButton v-model:count="item.count" :plus="()=>plus(item)" :minus="()=>minus(index)"/>
                     </div>
-                    <h2 class="flex flex-col w-1/6 text-right">
+                    <h2 class="flex flex-col w-1/6 s:text-center sm:text-right s:mx-auto s:mt-5 sm:mt-0">
                         {{ item.price * item.count }} AMD
                     </h2>
                 </div>
@@ -31,8 +34,8 @@
             <form class="space-y-4 md:space-y-6" @submit.prevent="order">
                 <div class="space-y-12 mt-16">
                     <div class="pb-12">
-                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                            <div class="sm:col-span-3">
+                        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 s:grid-cols-1 lg:grid-cols-6">
+                            <div class="s:col-span-full lg:col-span-3">
                                 <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Full
                                     name</label>
                                 <div class="mt-2">
@@ -41,7 +44,7 @@
                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
-                            <div class="sm:col-span-3">
+                            <div class="s:col-span-full lg:col-span-3">
                                 <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email
                                     address</label>
                                 <div class="mt-2">
@@ -50,7 +53,7 @@
                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
-                            <div class="sm:col-span-3">
+                            <div class="s:col-span-full">
                                 <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">
                                     Phone number</label>
                                 <div class="mt-2">
@@ -59,7 +62,7 @@
                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
-                            <div class="col-span-full">
+                            <div class="s:col-span-full">
                                 <VDatePicker
                                     :expanded="true"
                                     :first-day-of-week="2"
@@ -68,7 +71,7 @@
                                     v-model.range="selectedDate"
                                 />
                             </div>
-                            <div class="col-span-full">
+                            <div class="s:col-span-full">
                                 <label for="about" class="block text-sm font-medium leading-6 text-gray-900">Additional
                                     comment</label>
                                 <div class="mt-2">

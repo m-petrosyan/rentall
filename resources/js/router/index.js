@@ -85,6 +85,11 @@ const router = createRouter({
                                     name: 'db-categorycreate',
                                     component: CategoryCreateEditPage,
                                 },
+                                {
+                                    path: ':id/update',
+                                    name: 'db-categoryupdate',
+                                    component: CategoryCreateEditPage,
+                                },
                             ]
                         },
                         {

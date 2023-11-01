@@ -17,11 +17,11 @@ const postRequest = async (urlPath, data) => {
         .catch(error => Promise.reject(error.response.data));
 };
 
-const deleteRequest = async (url, body) => {
+const deleteRequest = async (urlPath, body) => {
     let headers = await getHeader();
     headers = {...headers, ...{data: body}};
     return axios
-        .delete(url, headers)
+        .delete(url + urlPath, headers)
         .then(response => response.data)
         .catch(error => Promise.reject(error.response.data));
 };

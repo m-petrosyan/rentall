@@ -1,15 +1,14 @@
 <template>
-    <div class="flex  items-center" :class="button ? 'justify-between' : 'justify-center mt-10'"
-         v-if="meta.total > meta.per_page">
+    <div class="flex  items-center" :class="button ? 'justify-between' : 'justify-center mt-10'">
         <div v-if="button">
             <router-link v-if="route" :to="{name: route}" type="button"
                          class="py-2 px-3 text-center focus:outline-none text-white bg-blue-500">
                 Create
             </router-link>
         </div>
-        <nav
-            class="flex flex-col md:flex-row gap-x-5 justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
-            aria-label="Table navigation">
+        <nav v-if="meta.total > meta.per_page"
+             class="flex flex-col md:flex-row gap-x-5 justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
+             aria-label="Table navigation">
                         <span v-if="button" class="text-sm font-normal text-gray-500 dark:text-gray-400">
                             Showing
                             <span class="font-semibold text-gray-900 dark:text-white">{{ meta.per_page }}</span>

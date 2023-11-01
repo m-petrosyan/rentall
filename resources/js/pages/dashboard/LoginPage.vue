@@ -1,8 +1,8 @@
 <template>
-    <section class="bg-dark">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section class="bg-dark h-screen">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
             <div
-                class="w-full bg-dark-grey rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                class="w-full bg-dark-grey rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <ErrorMessages :error="v$" :serverError="error"/>
                     <form class="space-y-4 md:space-y-6" @submit.prevent="signIn">

@@ -19,6 +19,7 @@ import ProductCreateEditPage from "@/pages/dashboard/product/ProductCreateEditPa
 import NotFound404 from "@/pages/other/NotFound404.vue";
 import BrandListPage from "@/pages/dashboard/brand/BrandListPage.vue";
 import KitListPage from "@/pages/dashboard/Kit/KitListPage.vue";
+import CategoryCreateEditPage from "../pages/dashboard/category/CategoryCreateEditPage.vue";
 
 
 const router = createRouter({
@@ -78,6 +79,11 @@ const router = createRouter({
                                     path: ':page',
                                     name: 'db-category',
                                     component: CategoryListPage,
+                                },
+                                {
+                                    path: 'create',
+                                    name: 'db-categorycreate',
+                                    component: CategoryCreateEditPage,
                                 },
                             ]
                         },

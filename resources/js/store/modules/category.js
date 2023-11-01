@@ -1,13 +1,17 @@
 import {getRequest} from "@/store/api";
+import {postRequest} from "../api";
 
 export default {
     state: {
         categories: null,
+        category: {},
+        error: null,
     },
     getters: {
         categories: state => state.categories,
+        category: state => state.category,
         // getProduct: state => state.product,
-        // getProductError: state => state.productError,
+        categoryError: state => state.error,
     },
     mutations: {
         // setCategoryError(state, data) {
@@ -16,19 +20,30 @@ export default {
         setCategories(state, data) {
             state.categories = data
         },
-        // setProduct(state, data) {
-        //     state.product = data
-        // },
+        setCategoryError(state, data) {
+            state.categoryError = data
+        },
     },
     actions: {
         getCategories({commit}, paginate) {
             return getRequest(`/category`, paginate)
                 .then(response => {
                     commit("setCategories", response)
-                    // commit('setProductError', null)
+                    commit('setCategoryError', null)
                 })
                 .catch(error => {
-                    // commit('setProductError', error)
+                    commit('setCategoryError', error)
+                    return Promise.reject(error)
+                });
+        },
+        createCategory({commit}, data) {
+            return postRequest(`/category`, data)
+                .then(response => {
+                    // commit("setCategories", response)
+                    commit('setCategoryError', null)
+                })
+                .catch(error => {
+                    commit('setCategoryError', error)
                     return Promise.reject(error)
                 });
         },

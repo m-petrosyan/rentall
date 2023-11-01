@@ -40,7 +40,7 @@
                     :meta="categories.meta"
                     :page="this.paginate.page"
                     :button="true"
-                    :route="'db-productcreate'"
+                    :route="'db-categorycreate'"
                 />
             </div>
         </div>
@@ -97,7 +97,7 @@ export default {
         return {
             loading: true,
             paginate: {
-                limit: 30,
+                limit: 10,
                 page: +this.$route.params.page
             }
         }

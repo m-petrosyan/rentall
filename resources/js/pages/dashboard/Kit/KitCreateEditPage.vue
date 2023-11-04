@@ -1,14 +1,14 @@
 <template>
     <section>
-        <div class="relative p-4 w-full" v-if="category && !loading">
+        <div class="relative p-4 w-full" v-if="kit && kitOptions && !loading">
             <div class="p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                 <div
                     class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ update ? 'Update' : 'Add' }}
-                        Category</h3>
+                        Kit</h3>
                 </div>
-                <ErrorMessages :error="v$" :serverError="categoryError?.message"/>
-                <form @submit.prevent="createUpdateCategoryQuery">
+                <ErrorMessages :error="v$" :serverError="kitError?.message"/>
+                <form @submit.prevent="createUpdateKitQuery">
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -16,15 +16,25 @@
                             </label>
                             <input type="text" name="name" id="name"
                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                   placeholder="Type category name" required="" v-model="category.title ">
+                                   placeholder="Type kit name" required="" v-model="kit.title ">
                         </div>
+                    </div>
+                    <div>
+                        <label for="kits"
+                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Kits</label>
+                        <!--                        <v-select-->
+                        <!--                            class="p-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"-->
+                        <!--                            multiple="true" required-->
+                        <!--                            :options="kit.data.products" label="title"-->
+                        <!--                            v-model="kit.data.products"/>-->
                     </div>
                     <div class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                         <button type="submit"
                                 class="w-full sm:w-auto justify-center text-white inline-flex bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                             Save
                         </button>
-                        <router-link :to="{name: 'db-category', params:{page: 1}}"
+                        <router-link :to="{name: 'db-kit', params:{page: 1}}"
                                      data-modal-toggle="createProductModal" type="button"
                                      class="w-full justify-center sm:w-auto text-gray-500 inline-flex items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                             <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
@@ -64,7 +74,7 @@ export default {
         return {v$: useVuelidate()}
     },
     validations: {
-        category: {
+        kit: {
             title: {required, minLength: minLength(2)},
         }
     },
@@ -72,27 +82,28 @@ export default {
         this.getData()
     },
     methods: {
-        ...mapActions(['createCategory', 'updateCategory', 'getCategory']),
+        ...mapActions(['createKit', 'updateKit', 'optionsKit', 'getKit']),
         getData() {
             if (this.update) {
-                this.getCategory(this.$route.params.id)
+                this.getKit(this.$route.params.id)
             }
+            this.optionsKit()
             this.loading = false
         },
-        createUpdateCategoryQuery() {
+        createUpdateKitQuery() {
             this.v$.$touch()
             if (!this.v$.$error) {
                 if (this.update) {
-                    this.updateCategory({
+                    this.updateKit({
                         id: this.$route.params.id,
-                        category: this.category
+                        kit: this.kit
                     }).then(() => this.$router.push({
-                        name: 'db-category',
+                        name: 'db-kit',
                         params: {page: 1}
                     }))
                 } else {
-                    this.createCategory(this.category).then(() => this.$router.push({
-                        name: 'db-category',
+                    this.createKit(this.kit).then(() => this.$router.push({
+                        name: 'db-kit',
                         params: {page: 1}
                     }))
                 }
@@ -100,9 +111,9 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['categoryError']),
-        category() {
-            return this.update ? this.$store.getters.category : this.default
+        ...mapGetters(['kitError', 'kitOptions']),
+        kit() {
+            return this.update ? this.$store.getters.kit : this.default
         }
     }
 }

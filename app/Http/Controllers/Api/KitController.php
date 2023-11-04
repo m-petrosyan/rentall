@@ -7,9 +7,11 @@ use App\Http\Requests\Kit\KitCreateRequest;
 use App\Http\Requests\Kit\KitGetRequest;
 use App\Http\Requests\Kit\KitUpdateRequest;
 use App\Http\Resources\Kit\KitCollection;
+use App\Http\Resources\Kit\KitOptionCollection;
 use App\Http\Resources\Kit\KitResource;
 use App\Models\Kit;
 use App\Repositories\KitRepository;
+use App\Repositories\ProductRepository;
 use App\Services\KitService;
 use Illuminate\Http\Response;
 
@@ -55,6 +57,14 @@ class KitController extends Controller
     public function show(Kit $kit): KitResource
     {
         return new KitResource($kit);
+    }
+
+    /**
+     * @return KitOptionCollection
+     */
+    public function options(): KitOptionCollection
+    {
+        return new KitOptionCollection(ProductRepository::getAll());
     }
 
     /**

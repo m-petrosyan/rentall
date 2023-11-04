@@ -20,6 +20,8 @@ import NotFound404 from "@/pages/other/NotFound404.vue";
 import BrandListPage from "@/pages/dashboard/brand/BrandListPage.vue";
 import KitListPage from "@/pages/dashboard/Kit/KitListPage.vue";
 import CategoryCreateEditPage from "../pages/dashboard/category/CategoryCreateEditPage.vue";
+import BrandCreateEditPage from "@/pages/dashboard/brand/BrandCreateEditPage.vue";
+import KitCreateEditPage from "@/pages/dashboard/Kit/KitCreateEditPage.vue";
 
 
 const router = createRouter({
@@ -100,6 +102,16 @@ const router = createRouter({
                                     name: 'db-brand',
                                     component: BrandListPage,
                                 },
+                                {
+                                    path: 'create',
+                                    name: 'db-brandcreate',
+                                    component: BrandCreateEditPage,
+                                },
+                                {
+                                    path: ':id/update',
+                                    name: 'db-brandupdate',
+                                    component: BrandCreateEditPage,
+                                },
                             ]
                         },
                         {
@@ -109,6 +121,16 @@ const router = createRouter({
                                     path: ':page',
                                     name: 'db-kit',
                                     component: KitListPage,
+                                },
+                                {
+                                    path: 'create',
+                                    name: 'db-kitcreate',
+                                    component: KitCreateEditPage,
+                                },
+                                {
+                                    path: ':id/update',
+                                    name: 'db-kitupdate',
+                                    component: KitCreateEditPage,
                                 },
                             ]
                         },

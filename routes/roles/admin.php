@@ -21,6 +21,7 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
 //        Route::post('similar', [ProductSimilarController::class, 'store']);
 //        Route::put('similar', [ProductSimilarController::class, 'update']);
 //    });
+    Route::get('kit-options', [KitController::class, 'options']);
     Route::resource('kit', KitController::class)->except('create', 'edit');
     Route::resource('rent', RentController::class)->only('index', 'show');
 });

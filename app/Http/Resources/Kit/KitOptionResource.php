@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\KitOption;
+namespace App\Http\Resources\Kit;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -14,6 +14,8 @@ class KitOptionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+//        dd(1);
+
         return [
             'id' => $this->id,
             'title' => $this->title,

@@ -64,6 +64,10 @@ class ProductController extends Controller
     }
 
 
+    /**
+     * @param  Request  $request
+     * @return ProductOptionsResource
+     */
     public function options(Request $request): ProductOptionsResource
     {
         return new ProductOptionsResource($request);

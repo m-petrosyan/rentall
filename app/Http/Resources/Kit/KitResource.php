@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Kit;
 
-use App\Http\Resources\KitOption\KitOptionCollection;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

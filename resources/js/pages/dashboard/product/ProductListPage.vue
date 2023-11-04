@@ -31,7 +31,7 @@
                                 {{ product.category?.title }}
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                                {{ product.brand.title }}
+                                {{ product.brand?.title }}
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                                 {{ product.price }} AMD

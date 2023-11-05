@@ -15,9 +15,8 @@
     <table>
         @foreach($data->products as $product)
             <tr>
-                <td><img src="{{$product->getFirstMediaUrl('main_image')}}" alt="{{$product->title}}" width="100"
-                         height="100"></td>
-                <td>{{$product->title . ' - '.$product->price}}</td>
+                <td><img src="{{$product->getFirstMediaUrl('main_image')}}" alt="{{$product->title}}" width="100"></td>
+                <td>{{$product->title . ' - '.$product->price}}AMD</td>
             </tr>
         @endforeach
         <tr>

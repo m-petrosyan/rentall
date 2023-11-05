@@ -39,7 +39,7 @@ class ProductRepository implements ProductInterface
             dump($summ);
         }
 
-        $summ *= Carbon::create($start)->diffInDays(Carbon::create($end));
+        $summ *= Carbon::create($start)->diffInDays(Carbon::create($end)) + 1;
 
         return $summ;
     }

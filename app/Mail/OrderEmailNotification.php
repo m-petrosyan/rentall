@@ -34,7 +34,7 @@ class OrderEmailNotification extends Mailable
             replyTo: [
                 new Address($this->mailData['email'], $this->mailData['full_name']),
             ],
-            subject: 'Message rent '.config('app.url'),
+            subject: 'New order for '.$this->mailData['start_date'],
         );
     }
 

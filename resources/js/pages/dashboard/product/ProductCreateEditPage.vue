@@ -7,7 +7,7 @@
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Add Product</h3>
                 </div>
                 <ErrorMessages :error="v$" :serverError="productError?.message"/>
-                <form @submit.prevent="createProductQuery">
+                <form @submit.prevent="createUpdateProductQuery">
                     <div class="grid gap-4 mb-4 sm:grid-cols-2">
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -87,7 +87,7 @@
                             <span
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Image</span>
                             <div class="flex justify-center items-center w-full bg-contain bg-center bg-no-repeat"
-                                 :style="{backgroundImage : `url(${main_image_preview})`}">
+                                 :style="{backgroundImage: main_image_bg}">
                                 <label for="main_image"
                                        class="flex flex-col justify-center items-center w-full h-slider  rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                     <div class="flex-col justify-center items-center pt-5 pb-6 hidden hover:flex">
@@ -104,8 +104,7 @@
                                         <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX.
                                             1900x500)</p>
                                     </div>
-                                    <input id="main_image" type="file" class="hidden"
-                                           @change="changePicture">
+                                    <input id="main_image" type="file" class="hidden" @change="changePicture">
                                 </label>
                             </div>
                         </div>
@@ -120,9 +119,9 @@
                     </div>
 
                     <div class="mb-4 img-content">
-                        <span class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Image</span>
+                        <span class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Slider Image</span>
                         <div class="flex justify-center items-center w-full cover bg-center bg-no-repeat"
-                             :style="{backgroundImage : `url(${slider_image_preview})`}">
+                             :style="{backgroundImage: slider_image_bg}">
                             <label for="slider_image"
                                    class="flex flex-col justify-center items-center w-full h-slider  rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                                 <div class="flex-col justify-center items-center pt-5 pb-6 group-hover:flex hidden">
@@ -138,8 +137,7 @@
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX.
                                         1900x500)</p>
                                 </div>
-                                <input id="slider_image" type="file" class="hidden"
-                                       @change="changePicture">
+                                <input id="slider_image" type="file" class="hidden" @change="changePicture">
                             </label>
                         </div>
                     </div>
@@ -148,8 +146,9 @@
                                 class="w-full sm:w-auto justify-center text-white inline-flex bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                             Add product
                         </button>
-                        <button data-modal-toggle="createProductModal" type="button"
-                                class="w-full justify-center sm:w-auto text-gray-500 inline-flex items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                        <router-link :to="{name: 'db-product', params:{page: 1}}" data-modal-toggle="createProductModal"
+                                     type="button"
+                                     class="w-full justify-center sm:w-auto text-gray-500 inline-flex items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                             <svg class="mr-1 -ml-1 w-5 h-5" fill="currentColor" viewbox="0 0 20 20"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
@@ -157,7 +156,7 @@
                                       clip-rule="evenodd"/>
                             </svg>
                             Discard
-                        </button>
+                        </router-link>
                     </div>
                 </form>
             </div>
@@ -181,6 +180,7 @@ export default {
             slider_image_preview: null,
             loading: false,
             newData: null,
+            update: this.$route.params.id ?? false,
             validateData: {}
         }
     },
@@ -198,7 +198,7 @@ export default {
         this.getData()
     },
     methods: {
-        ...mapActions(['editProduct', 'optionsProduct', 'createProduct']),
+        ...mapActions(['editProduct', 'optionsProduct', 'createProduct', 'updateProduct']),
         getData() {
             if (this.$route.params.id) {
                 this.editProduct(this.$route.params.id)
@@ -209,10 +209,11 @@ export default {
             this.loading = false
         },
         changePicture(file) {
+            console.log(file.target.id)
             this[file.target.id + '_preview'] = URL.createObjectURL(file.target.files[0])
             this[file.target.id] = file.target.files[0]
         },
-        createProductQuery() {
+        createUpdateProductQuery() {
             this.v$.$touch()
             this.validateData = this.product.data
             if (!this.v$.$error && !this.selectedDateValidation) {
@@ -222,22 +223,36 @@ export default {
 
 
                 data.append('title', this.product.data.title)
-                data.append('description', this.product.data.description)
+                if (this.product.data.description) {
+                    data.append('description', this.product.data.description)
+                }
+
                 data.append('price', this.product.data.price)
                 data.append('slider', this.product.data.slider)
                 data.append('category_id', this.product.data.category.id)
                 data.append('brand_id', this.product.data.brand.id)
 
-
-                for (const kit of this.product.data.kits) {
-                    data.append("kits[]", kit.id);
+                if (this.product.data.kits) {
+                    for (const kit of this.product.data.kits) {
+                        data.append("kits[]", kit.id);
+                    }
                 }
 
-                for (const similar of this.product.data.similars) {
-                    data.append("similars[]", similar.id);
+                if (this.product.data.similars) {
+                    for (const similar of this.product.data.similars) {
+                        data.append("similars[]", similar.id);
+                    }
                 }
+                if (this.update) {
+                    data.append('_method', 'PUT')
+                    this.updateProduct({id: this.update, data: data}).then(() => this.$router.push({
+                        name: 'db-product',
+                        params: {page: 1}
+                    }))
 
-                this.createProduct(data).then(() => this.$router.push({name: 'db-product', params: {page: 1}}))
+                } else {
+                    this.createProduct(data).then(() => this.$router.push({name: 'db-product', params: {page: 1}}))
+                }
             }
         }
     },
@@ -254,14 +269,15 @@ export default {
         },
         productError() {
             return this.$store.getters.getProductError
+        },
+        main_image_bg() {
+            return !this.main_image_preview && this.product.data.main_image ? `url(${this.product.data.main_image})` : `url(${this.main_image_preview})`
+        },
+        slider_image_bg() {
+            return !this.slider_image_preview && this.product.data.slider_image ? `url(${this.product.data.slider_image})` : `url(${this.slider_image_preview})`
         }
     }
 }
 </script>
 
 
-<style scoped>
-.img-content label:hover div {
-    display: flex;
-}
-</style>

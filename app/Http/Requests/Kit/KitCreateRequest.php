@@ -24,8 +24,8 @@ class KitCreateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:2'],
-            'products' => ['nullable', 'array'],
-            'products.*' => ['numeric', 'exists:products,id'],
+            'options' => ['nullable', 'array'],
+            'options.*' => ['numeric', 'exists:products,id'],
         ];
     }
 }

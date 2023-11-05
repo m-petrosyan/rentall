@@ -14,8 +14,6 @@ class KitOptionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-//        dd(1);
-
         return [
             'id' => $this->id,
             'title' => $this->title,

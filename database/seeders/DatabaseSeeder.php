@@ -15,14 +15,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
-            BrandSeeder::class,
-            CategorySeeder::class,
-            ProductSeeder::class,
-            KitSeeder::class,
-            RentSeeder::class,
-            KitProductPivotSeeder::class,
-            RentProductPivotSeeder::class,
-            ProductSimilarSeeder::class,
+//            BrandSeeder::class,
+//            CategorySeeder::class,
+//            ProductSeeder::class,
+//            KitSeeder::class,
+//            RentSeeder::class,
+//            KitProductPivotSeeder::class,
+//            RentProductPivotSeeder::class,
+//            ProductSimilarSeeder::class,
         ]);
     }
 }

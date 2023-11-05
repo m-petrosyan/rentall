@@ -8,6 +8,7 @@
                         <thead class="text-xs ppercase">
                         <tr>
                             <th scope="col" class="p-4">Kit</th>
+                            <th scope="col" class="p-4">Options</th>
                             <th scope="col" class="p-4">Actions</th>
                         </tr>
                         </thead>
@@ -18,6 +19,14 @@
                                 class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <div class="flex items-center mr-3">
                                     {{ kit.title }}
+                                </div>
+                            </th>
+                            <th scope="row"
+                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                <div class="flex flex-col items-center mr-3">
+                                    <p v-for="option in kit.options" :key="option.id">
+                                        {{ option.title }}
+                                    </p>
                                 </div>
                             </th>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -111,7 +120,7 @@ export default {
         ...mapGetters(['kits'])
     },
     methods: {
-        ...mapActions(['getKits']),
+        ...mapActions(['getKits', 'deleteKit']),
         getData() {
             this.loading = true
             return this.getKits(this.paginate)

@@ -7,8 +7,8 @@ use App\Http\Requests\Kit\KitCreateRequest;
 use App\Http\Requests\Kit\KitGetRequest;
 use App\Http\Requests\Kit\KitUpdateRequest;
 use App\Http\Resources\Kit\KitCollection;
-use App\Http\Resources\Kit\KitOptionCollection;
 use App\Http\Resources\Kit\KitResource;
+use App\Http\Resources\Product\ProductNameCollection;
 use App\Models\Kit;
 use App\Repositories\KitRepository;
 use App\Repositories\ProductRepository;
@@ -60,11 +60,11 @@ class KitController extends Controller
     }
 
     /**
-     * @return KitOptionCollection
+     * @return ProductNameCollection
      */
-    public function options(): KitOptionCollection
+    public function options(): ProductNameCollection
     {
-        return new KitOptionCollection(ProductRepository::getAll());
+        return new ProductNameCollection(ProductRepository::getAll());
     }
 
     /**
@@ -83,8 +83,11 @@ class KitController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  Kit  $kit
+     * @return Response
      */
-    public function destroy(Kit $kit)
+    public function destroy(Kit $kit): Response
     {
         $this->kitService->destroy($kit);
 

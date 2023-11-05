@@ -1,6 +1,6 @@
 <template>
     <div v-if="products && !loading">
-        <Splide v-if="products.data.slider" :options="slider" aria-label="My Favorite Images"
+        <Splide v-if="products.data.slider.length" :options="slider" aria-label="My Favorite Images"
                 class="w-screen relative ml-50vw h-500px left-1/2 s:hidden md:block">
             <SplideSlide v-for="slide in products.data.slider" :key="slide.id">
                 <router-link

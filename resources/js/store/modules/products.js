@@ -1,4 +1,4 @@
-import {getRequest, postRequest} from "@/store/api";
+import {deleteRequest, getRequest, postRequest} from "@/store/api";
 
 export default {
     state: {
@@ -77,10 +77,31 @@ export default {
             return postRequest(`/product`, data)
                 .then(response => {
                     // commit("setProduct", response.data)
-                    commit('setOrderError', null)
+                    commit('setProductError', null)
                 })
                 .catch(error => {
-                    commit('setOrderError', error)
+                    commit('setProductError', error)
+                    return Promise.reject(error)
+                });
+        },
+        updateProduct({commit}, data) {
+            return postRequest(`/product/${data.id}`, data.data)
+                .then(response => {
+                    // commit("setProduct", response.data)
+                    commit('setProductError', null)
+                })
+                .catch(error => {
+                    commit('setProductError', error)
+                    return Promise.reject(error)
+                });
+        },
+        deleteProduct({commit}, id) {
+            return deleteRequest(`/product/${id}`)
+                .then(response => {
+                    commit('setProductError', null)
+                })
+                .catch(error => {
+                    commit('setProductError', error)
                     return Promise.reject(error)
                 });
         },

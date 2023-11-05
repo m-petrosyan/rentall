@@ -16,11 +16,6 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
     Route::resource('brand', BrandController::class)->only('store', 'update', 'destroy');
     Route::get('product-options', [ProductController::class, 'options'])->name('options');
     Route::resource('product', ProductController::class)->except('index', 'show', 'create');
-
-//    Route::prefix('product/{product}')->group(function () {
-//        Route::post('similar', [ProductSimilarController::class, 'store']);
-//        Route::put('similar', [ProductSimilarController::class, 'update']);
-//    });
     Route::get('kit-options', [KitController::class, 'options']);
     Route::resource('kit', KitController::class)->except('create', 'edit');
     Route::resource('rent', RentController::class)->only('index', 'show');

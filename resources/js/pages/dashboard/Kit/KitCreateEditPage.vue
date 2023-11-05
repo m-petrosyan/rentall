@@ -8,26 +8,25 @@
                         Kit</h3>
                 </div>
                 <ErrorMessages :error="v$" :serverError="kitError?.message"/>
-                <form @submit.prevent="createUpdateKitQuery">
-                    <div class="grid gap-4 mb-4 sm:grid-cols-2">
-                        <div>
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Title
-                            </label>
-                            <input type="text" name="name" id="name"
-                                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                   placeholder="Type kit name" required="" v-model="kit.title ">
-                        </div>
+                <form @submit.prevent="createUpdateKitQuery" class="flex flex-col gap-y-10">
+                    <div class="w-1/2">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            Title
+                        </label>
+                        <input type="text" name="name" id="name"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                               placeholder="Type kit name" required="" v-model="kit.title ">
                     </div>
-                    <div>
+
+                    <div class="w-1/2">
                         <label for="kits"
                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Kits</label>
-                        <!--                        <v-select-->
-                        <!--                            class="p-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"-->
-                        <!--                            multiple="true" required-->
-                        <!--                            :options="kit.data.products" label="title"-->
-                        <!--                            v-model="kit.data.products"/>-->
+                        <v-select
+                            class="p-1.5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            multiple="true" required
+                            :options="kitOptions.data" label="title"
+                            v-model="kit.options"/>
                     </div>
                     <div class="items-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
                         <button type="submit"
@@ -93,16 +92,23 @@ export default {
         createUpdateKitQuery() {
             this.v$.$touch()
             if (!this.v$.$error) {
+
+                const data = {title: this.kit.title, options: []}
+
+                for (const optioon of this.kit.options) {
+                    data.options.push(optioon.id);
+                }
+
                 if (this.update) {
                     this.updateKit({
                         id: this.$route.params.id,
-                        kit: this.kit
+                        kit: data
                     }).then(() => this.$router.push({
                         name: 'db-kit',
                         params: {page: 1}
                     }))
                 } else {
-                    this.createKit(this.kit).then(() => this.$router.push({
+                    this.createKit(data).then(() => this.$router.push({
                         name: 'db-kit',
                         params: {page: 1}
                     }))
@@ -111,7 +117,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['kitError', 'kitOptions']),
+        ...mapGetters(['kitError', 'kit', 'kitOptions']),
         kit() {
             return this.update ? this.$store.getters.kit : this.default
         }

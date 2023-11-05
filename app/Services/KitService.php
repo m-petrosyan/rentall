@@ -13,7 +13,7 @@ class KitService
      */
     public function store(array $attributes): void
     {
-        Kit::create(Arr::only($attributes, ['title']))->options()->attach($attributes['products']);
+        Kit::create(Arr::only($attributes, ['title']))->options()->attach($attributes['options']);
     }
 
 
@@ -25,7 +25,7 @@ class KitService
     public function update(object $kit, array $attributes): void
     {
         $kit->update(Arr::only($attributes, ['title']));
-        $kit->options()->sync($attributes['products']);
+        $kit->options()->sync($attributes['options']);
     }
 
     /**

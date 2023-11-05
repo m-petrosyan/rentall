@@ -1,4 +1,4 @@
-import {getRequest} from "@/store/api";
+import {deleteRequest, getRequest, postRequest, putRequest} from "@/store/api";
 
 export default {
     state: {
@@ -18,7 +18,7 @@ export default {
             state.kits = data
         },
         setKit(state, data) {
-            state.kits = data
+            state.kit = data
         },
         setKitOptions(state, data) {
             state.kitOptions = data
@@ -82,10 +82,10 @@ export default {
                     return Promise.reject(error)
                 });
         },
-        optionsKit({commit}, id) {
+        optionsKit({commit}) {
             return getRequest(`/kit-options`)
                 .then(response => {
-                    commit("setOptions", response)
+                    commit("setKitOptions", response)
                     commit('setKitError', null)
                 })
                 .catch(error => {

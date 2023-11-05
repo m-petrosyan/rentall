@@ -21,7 +21,6 @@ class OrderEmailNotification extends Mailable
     public function __construct(object $mailData)
     {
         $this->mailData = $mailData;
-//        dd($this->mailData);
     }
 
     /**

@@ -29,9 +29,16 @@ class ProductRepository implements ProductInterface
      * @param  array  $products
      * @return mixed
      */
-    public static function getSumm(array $products): mixed
+    public static function getSumm(array $products): int
     {
-        return Product::whereIn('id', $products)->sum('price');
+        $summ = 0;
+
+        foreach ($products as $product) {
+            $summ += Product::find($product)->price;
+            dump($summ);
+        }
+
+        return $summ;
     }
 
     /**

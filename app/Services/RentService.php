@@ -19,13 +19,13 @@ class RentService
         $products = $attributes['products'];
 
         $attributes['total_price'] = ProductRepository::getSumm($products);
-
+//        dd($attributes['total_price']);
         unset($attributes['products']);
-
+//        dd($attributes);
         $rent = Rent::create($attributes);
 
         $rent->products()->attach($products);
 
-        Mail::to(config('mail')['from']['address'])->send(new OrderEmailNotification($rent->with('products')->first()));
+        Mail::to(config('mail')['from']['address'])->send(new OrderEmailNotification($rent->load('products')));
     }
 }

@@ -15,7 +15,11 @@
     <table>
         @foreach($data->products as $product)
             <tr>
-                <td><img src="{{$product->getFirstMediaUrl('main_image')}}" alt="{{$product->title}}" width="100"></td>
+                <td>
+                    <a href="{{config('app')['url'].'/product/'.$product->id}}">
+                        <img src="{{$product->getFirstMediaUrl('main_image')}}" alt="{{$product->title}}" width="100">
+                    </a>
+                </td>
                 <td>{{$product->title . ' - '.$product->price}}AMD</td>
             </tr>
         @endforeach

@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use App\Mail\ContactMessage;
+use App\Mail\OrderEmailNotification;
 use App\Models\Rent;
 use App\Repositories\ProductRepository;
+use Illuminate\Support\Facades\Mail;
 
 class RentService
 {
@@ -22,5 +25,7 @@ class RentService
         $rent = Rent::create($attributes);
 
         $rent->products()->attach($products);
+
+        Mail::to(config('mail')['from']['address'])->send(new OrderEmailNotification($rent->with('products')->first()));
     }
 }

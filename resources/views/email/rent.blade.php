@@ -17,7 +17,7 @@
             <tr>
                 <td><img src="{{$product->getFirstMediaUrl('main_image')}}" alt="{{$product->title}}" width="100"
                          height="100"></td>
-                <td>{{$product->title}}</td>
+                <td>{{$product->title . ' - '.$product->price}}</td>
             </tr>
         @endforeach
         <tr>

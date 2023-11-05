@@ -18,7 +18,11 @@ class RentService
     {
         $products = $attributes['products'];
 
-        $attributes['total_price'] = ProductRepository::getSumm($products);
+        $attributes['total_price'] = ProductRepository::getSumm(
+            $products,
+            $attributes['start_date'],
+            $attributes['end_date']
+        );
 //        dd($attributes['total_price']);
         unset($attributes['products']);
 //        dd($attributes);

@@ -6,6 +6,7 @@ use App\Interfaces\ProductInterface;
 use App\Models\Product;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Carbon;
 
 class ProductRepository implements ProductInterface
 {
@@ -29,7 +30,7 @@ class ProductRepository implements ProductInterface
      * @param  array  $products
      * @return mixed
      */
-    public static function getSumm(array $products): int
+    public static function getSumm(array $products, string $start, string $end): int
     {
         $summ = 0;
 
@@ -37,6 +38,8 @@ class ProductRepository implements ProductInterface
             $summ += Product::find($product)->price;
             dump($summ);
         }
+
+        $summ *= Carbon::create($start)->diffInDays(Carbon::create($end));
 
         return $summ;
     }

@@ -26,8 +26,7 @@
 
             </div>
         </div>
-        <pre>{{ product.description }}</pre>
-        <div class="mt-16" v-html="product.description"/>
+        <pre class="mt-16">{{ product.description }}</pre>
         <div class="flex mt-20 gap-x-6">
             <Splide v-if="product.similars.length" :options="slider" aria-label="My Favorite Images"
                     class="w-full h-64">

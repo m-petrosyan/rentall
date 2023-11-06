@@ -23,9 +23,9 @@ class RentService
             $attributes['start_date'],
             $attributes['end_date']
         );
-//        dd($attributes['total_price']);
+
         unset($attributes['products']);
-//        dd($attributes);
+
         $rent = Rent::create($attributes);
 
         $rent->products()->attach($products);

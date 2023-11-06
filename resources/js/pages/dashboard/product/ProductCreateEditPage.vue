@@ -30,17 +30,17 @@
                                     </option>
                                 </select>
                             </div>
-                            <div>
-                                <label for="brand"
-                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
-                                <select v-model="product.data.brand.id"
-                                        id="brand"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option v-for="brand in  options.data.brands" :key="brand.id" :value="brand.id">
-                                        {{ brand.title }}
-                                    </option>
-                                </select>
-                            </div>
+                            <!--                            <div>-->
+                            <!--                                <label for="brand"-->
+                            <!--                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>-->
+                            <!--                                <select v-model="product.data.brand.id"-->
+                            <!--                                        id="brand"-->
+                            <!--                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">-->
+                            <!--                                    <option v-for="brand in  options.data.brands" :key="brand.id" :value="brand.id">-->
+                            <!--                                        {{ brand.title }}-->
+                            <!--                                    </option>-->
+                            <!--                                </select>-->
+                            <!--                            </div>-->
                         </div>
                         <div>
                             <label for="price"
@@ -230,7 +230,7 @@ export default {
                 data.append('price', this.product.data.price)
                 data.append('slider', this.product.data.slider)
                 data.append('category_id', this.product.data.category.id)
-                data.append('brand_id', this.product.data.brand.id)
+                // data.append('brand_id', this.product.data.brand.id)
 
                 if (this.product.data.kits) {
                     for (const kit of this.product.data.kits) {
@@ -262,7 +262,7 @@ export default {
             return this.$route.params.id ? this.$store.getters.product : {
                 data: {
                     category: {},
-                    brand: {},
+                    // brand: {},
                     slider: 0
                 }
             }

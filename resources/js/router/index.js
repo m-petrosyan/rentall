@@ -18,10 +18,10 @@ import ProductCreateEditPage from "@/pages/dashboard/product/ProductCreateEditPa
 //other
 import NotFound404 from "@/pages/other/NotFound404.vue";
 import BrandListPage from "@/pages/dashboard/brand/BrandListPage.vue";
-import KitListPage from "@/pages/dashboard/Kit/KitListPage.vue";
+import KitListPage from "@/pages/dashboard/kit/KitListPage.vue";
+import KitCreateEditPage from "@/pages/dashboard/kit/KitCreateEditPage.vue";
 import CategoryCreateEditPage from "../pages/dashboard/category/CategoryCreateEditPage.vue";
 import BrandCreateEditPage from "@/pages/dashboard/brand/BrandCreateEditPage.vue";
-import KitCreateEditPage from "@/pages/dashboard/Kit/KitCreateEditPage.vue";
 
 
 const router = createRouter({

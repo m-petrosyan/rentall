@@ -30,7 +30,7 @@ class ProductCreateRequest extends FormRequest
             'price' => ['required', 'numeric'],
             'slider' => ['nullable', 'boolean'],
             'category_id' => ['required', 'exists:categories,id'],
-            'brand_id' => ['required', 'exists:brands,id'],
+            'brand_id' => ['nullable', 'exists:brands,id'],
             'kits' => ['nullable', 'array'],
             'kits.*' => ['numeric', 'exists:kits,id'],
             'similars' => ['nullable', 'array'],

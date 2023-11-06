@@ -11,9 +11,30 @@
             </SplideSlide>
         </Splide>
         <div class="content mt-10">
-            <input type="search" v-model="paginate.search"
-                   class="mx-auto block rounded-full border-gray-100 bg-gray-100"
-                   placeholder="type here..."/>
+            <div class="flex">
+                <!--                <div class="flex">-->
+                <!--                    <button @click="brandToggle = !brandToggle"-->
+                <!--                            class="pointer block mb-2 text-sm font-medium text-gray-900 dark:text-white">-->
+                <!--                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-filter" width="25"-->
+                <!--                             height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#9e9e9e" fill="none"-->
+                <!--                             stroke-linecap="round" stroke-linejoin="round">-->
+                <!--                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>-->
+                <!--                            <path-->
+                <!--                                d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227z"/>-->
+                <!--                        </svg>-->
+                <!--                    </button>-->
+                <!--                    <select v-if="brandToggle" v-model="brand"-->
+                <!--                            id="brand"-->
+                <!--                            class="h-8 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">-->
+                <!--                        <option v-for="brand in  brands.data" :key="brand.id" :value="brand.id">-->
+                <!--                            {{ brand.title }}-->
+                <!--                        </option>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+                <input type="search" v-model="paginate.search"
+                       class="mx-auto block rounded-full border-gray-100 bg-gray-100"
+                       placeholder="type here..."/>
+            </div>
             <CategoryTopMenu :categories="categories" v-model:category="paginate.category"
                              v-model:search="paginate.search"/>
             <div class="product-list mt-10">
@@ -63,13 +84,15 @@ export default {
                 page: this.$route.params?.page ?? 1,
                 search: null,
             },
-
+            brand: null,
+            brandToggle: false,
             loading: true,
             actions: ['getProducts', 'getCategories']
         }
     },
     mounted() {
         this.getCategories()
+        this.getBrands({page: 1, limit: 100})
         this.getData().then(() => {
             this.loading = false
         })
@@ -79,10 +102,10 @@ export default {
         }, 1500);
     },
     computed: {
-        ...mapGetters(['categories', 'products']),
+        ...mapGetters(['categories', 'products', 'brands']),
     },
     methods: {
-        ...mapActions(['getProducts', 'getCategories']),
+        ...mapActions(['getProducts', 'getCategories', 'getBrands']),
         async getData() {
             return await this.getProducts({...this.paginate})
         }

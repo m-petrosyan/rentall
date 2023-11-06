@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td>total price:</td>
-            <td>{{$data->total_price}}</td>
+            <td>{{$data->total_price}}AMD</td>
         </tr>
     </table>
 </div>

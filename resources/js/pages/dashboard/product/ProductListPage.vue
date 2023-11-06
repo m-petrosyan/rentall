@@ -9,7 +9,7 @@
                         <tr>
                             <th scope="col" class="p-4">Product</th>
                             <th scope="col" class="p-4">Category</th>
-                            <th scope="col" class="p-4">Brand</th>
+                            <!--                            <th scope="col" class="p-4">Brand</th>-->
                             <th scope="col" class="p-4">Price</th>
                             <th scope="col" class="p-4">Slider</th>
                             <th scope="col" class="p-4">Actions</th>
@@ -30,9 +30,9 @@
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                                 {{ product.category?.title }}
                             </td>
-                            <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
-                                {{ product.brand?.title }}
-                            </td>
+                            <!--                            <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">-->
+                            <!--                                {{ product.brand?.title }}-->
+                            <!--                            </td>-->
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                                 {{ product.price }} AMD
                             </td>

@@ -5,7 +5,7 @@
                  :style="{backgroundImage: `url(${product.main_image})`}"/>
             <div class="info md:w-1/2  s:w-full">
                 <h3 class="title font-bold">{{ product.title }}</h3>
-                <p class="price">{{ product.brand.title }}</p>
+                <!--                <p class="price">{{ product.brand.title }}</p>-->
                 <h2 class="title mt-4 font-bold">{{ totalPrice }} AMD</h2>
                 <div class="kits flex flex-col gap-y-3 mt-2">
                     <div class="kit" v-for="(kit, index) in product.kits" :key="kit.id">

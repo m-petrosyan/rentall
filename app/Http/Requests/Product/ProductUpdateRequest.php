@@ -25,7 +25,7 @@ class ProductUpdateRequest extends FormRequest
         return [
             'title' => ['nullable', 'string', 'min:2'],
             'main_image' => ['nullable', 'mimes:jpeg,jpg,bmp,png,webp', 'max:2000'],
-            'slider_image' => ['nullable', 'mimes:jpeg,jpg,bmp,png,webp', 'max:2000'],
+            'slider_image' => ['nullable', 'mimes:jpeg,jpg,png,webp', 'max:2000'],
             'description' => ['nullable', 'string', 'min:10'],
             'price' => ['nullable', 'numeric'],
             'slider' => ['nullable', 'boolean'],

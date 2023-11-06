@@ -89,8 +89,7 @@ export default {
     },
     methods: {
         ...mapActions(['getProduct']),
-        getProductQuery() {
-            this.loading = true
+        async getProductQuery() {
             return this.getProduct(this.$route.params.id).then(() => this.loading = false)
         },
         addToCart() {
@@ -107,7 +106,7 @@ export default {
     computed: {
         product() {
             const product = this.$store.getters.product
-            for (let i = 0; i < product?.kits.length; i++) {
+            for (let i = 0; i < product?.kits?.length; i++) {
                 this.options.push({price: 0})
             }
 

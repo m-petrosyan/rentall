@@ -90,7 +90,8 @@
                                  :style="{backgroundImage: main_image_bg}">
                                 <label for="main_image"
                                        class="flex flex-col justify-center items-center w-full h-slider  rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                    <div class="flex-col justify-center items-center pt-5 pb-6 hidden hover:flex">
+                                    <div class="flex-col justify-center items-center pt-5 pb-6  hover:flex"
+                                         :class="{'hidden': slider_image_bg}">
                                         <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none"
                                              stroke="currentColor" viewbox="0 0 24 24"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -101,8 +102,7 @@
                                             <span class="font-semibold">Click to upload</span>
                                             or drag and drop
                                         </p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX.
-                                            1900x500)</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, WEBP</p>
                                     </div>
                                     <input id="main_image" type="file" class="hidden" @change="changePicture">
                                 </label>
@@ -124,7 +124,8 @@
                              :style="{backgroundImage: slider_image_bg}">
                             <label for="slider_image"
                                    class="flex flex-col justify-center items-center w-full h-slider  rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex-col justify-center items-center pt-5 pb-6 group-hover:flex hidden">
+                                <div class="flex-col justify-center items-center pt-5 pb-6 group-hover:flex"
+                                     :class="{'hidden': slider_image_bg}">
                                     <svg aria-hidden="true" class="mb-3 w-10 h-10 text-gray-400" fill="none"
                                          stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -134,8 +135,8 @@
                                         <span class="font-semibold">Click to upload</span>
                                         or drag and drop
                                     </p>
-                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX.
-                                        1900x500)</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, WEBP
+                                        (1900x500)</p>
                                 </div>
                                 <input id="slider_image" type="file" class="hidden" @change="changePicture">
                             </label>
@@ -195,18 +196,20 @@ export default {
     //     }
     // },
     created() {
-        this.getData()
+        this.getData().then(() => {
+            this.loading = false
+        })
     },
     methods: {
         ...mapActions(['editProduct', 'optionsProduct', 'createProduct', 'updateProduct']),
-        getData() {
+        async getData() {
             if (this.$route.params.id) {
                 this.editProduct(this.$route.params.id)
             } else {
                 this.product = {}
             }
             this.optionsProduct();
-            this.loading = false
+
         },
         changePicture(file) {
             console.log(file.target.id)
@@ -271,10 +274,10 @@ export default {
             return this.$store.getters.getProductError
         },
         main_image_bg() {
-            return !this.main_image_preview && this.product.data.main_image ? `url(${this.product.data.main_image})` : `url(${this.main_image_preview})`
+            return !this.main_image_preview && this.product.data.main_image ? `url(${this.product.data.main_image})` : this.main_image_preview ? `url(${this.main_image_preview})` : null
         },
         slider_image_bg() {
-            return !this.slider_image_preview && this.product.data.slider_image ? `url(${this.product.data.slider_image})` : `url(${this.slider_image_preview})`
+            return !this.slider_image_preview && this.product.data.slider_image ? `url(${this.product.data.slider_image})` : this.slider_image_preview ? `url(${this.slider_image_preview})` : null
         }
     }
 }

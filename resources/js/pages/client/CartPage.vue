@@ -169,8 +169,12 @@ export default {
                     ...this.data,
                     products: cartProducts
                 }
-                console.log(newData)
-                this.createRent(newData).then(() => this.ordered = true)
+                this.createRent(newData).then(() => {
+
+                    this.setStorage('cart', [], true)
+
+                    this.ordered = true
+                })
             }
         }
     },
@@ -197,6 +201,7 @@ export default {
                     };
                 }
             });
+
             return Object.values(mergedData);
         },
         getDaysCount() {

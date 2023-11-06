@@ -27,7 +27,7 @@ class Product extends Model implements HasMedia
      */
     public function kits(): BelongsToMany
     {
-        return $this->belongsToMany(Kit::class, 'kit_product');
+        return $this->belongsToMany(Kit::class, 'product_kit');
     }
 
     /**

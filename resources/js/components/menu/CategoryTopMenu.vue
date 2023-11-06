@@ -1,6 +1,5 @@
 <template>
     <menu>
-
         <nav class="border-gray-200 dark:border-gray-700 mt-5 s:block lg:hidden">
             <div class="max-w-screen-xl flex flex-wrap items-center mx-auto p-4 w-full  justify-end">
                 <button data-collapse-toggle="navbar-hamburger" type="button" @click="hide = !hide"
@@ -33,7 +32,7 @@
             </div>
         </nav>
 
-        <ul class="gap-x-5 justify-center mt-10  s:hidden lg:flex">
+        <ul class="gap-x-5 justify-center mt-10  s:hidden lg:flex flex-wrap">
             <li>
                 <button class="font-semibold" @click="setCategory(null)">All</button>
             </li>

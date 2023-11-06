@@ -2,26 +2,12 @@
     <div class="footer w-full bg-dark text-white py-16 s:px-10 md:px-16 lg:px-0">
 
         <div
-            class="w-full md:h-60 flex s:flex-col lg:flex-row s:gap-y-10 justify-between gap-x-5 max-w-screen-lg mx-auto ">
+            class="w-full  flex s:flex-col lg:flex-row s:gap-y-10 justify-between gap-x-5 max-w-screen-lg mx-auto ">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.7947167703314!2d44.51463199999999!3d40.1691241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abc5f01bf317b%3A0x85f721fcdfce5680!2s24%20Yervand%20Kochar%20St%2C%20Yerevan!5e0!3m2!1sru!2sam!4v1698600198896!5m2!1sru!2sam"
-                width="600" class="h-full w-full" style="border:0;" allowfullscreen="" loading="lazy"
+                width="600" class="h-full w-full s:hidden sm:block sm:w-5/6" style="border:0;" allowfullscreen=""
+                loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <!--            <div class="s:hidden sm:block sm:w-5/6">-->
-            <!--                <GoogleMap-->
-            <!--                    class="w-full lg:h-full s:h-48"-->
-            <!--                    :api-key="options.apiKey"-->
-            <!--                    :styles="[{theme: options.markers.theme}]"-->
-            <!--                    mapTypeId="terrain"-->
-            <!--                    :center="options.markers.position"-->
-            <!--                    :zoom="options.markers.position.zoom">-->
-            <!--                    <CustomMarker :options="{ position: options.markers.position, anchorPoint: 'BOTTOM_CENTER' }">-->
-            <!--                        <div style="text-align: center">-->
-            <!--                            <img :src="options.markers.icon" width="64" height="64" style="margin-top: 8px" alt=""/>-->
-            <!--                        </div>-->
-            <!--                    </CustomMarker>-->
-            <!--                </GoogleMap>-->
-            <!--            </div>-->
             <div>
                 <h3>Contacts</h3>
                 <div class="flex flex-col gap-y-3 mt-6">

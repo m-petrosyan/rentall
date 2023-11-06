@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Carbon;
 
 class OrderEmailNotification extends Mailable
 {
@@ -34,7 +35,7 @@ class OrderEmailNotification extends Mailable
             replyTo: [
                 new Address($this->mailData['email'], $this->mailData['full_name']),
             ],
-            subject: 'New order for '.$this->mailData['start_date'],
+            subject: 'New order for '.Carbon::createFromFormat('Y-m-d', $this->mailData['start_date'])->format('d-m-Y')
         );
     }
 

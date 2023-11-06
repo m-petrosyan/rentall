@@ -23,7 +23,7 @@ export default {
                     return
                 }
                 count++
-            } else if (count > 0) {
+            } else if (count > 1) {
                 if (this.minus) {
                     this.minus()
                     return

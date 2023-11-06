@@ -4,7 +4,7 @@
             <div
                 class="w-full bg-dark-grey rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <ErrorMessages :error="v$" :serverError="error"/>
+                    <ErrorMessages :error="v$" :serverError="error?.message"/>
                     <form class="space-y-4 md:space-y-6" @submit.prevent="signIn">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-white">Your
@@ -74,7 +74,7 @@ export default {
     },
     computed: {
         error() {
-            return this.$store.getters.getAuthError
+            return this.$store.getters.getUserError
         }
     },
 }

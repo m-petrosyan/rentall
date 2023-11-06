@@ -45,7 +45,7 @@ export default {
             })
                 .then(response => commit("setToken", response.access_token))
                 .catch(error => {
-                    commit('setAuthError', error.message)
+                    commit('setUserError', error)
                     return Promise.reject(error)
                 });
         },

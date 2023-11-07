@@ -24,6 +24,10 @@
             </tr>
         @endforeach
         <tr>
+            <td>full name:</td>
+            <td>{{$data->first_name.' '.$data->last_name}}</td>
+        </tr>
+        <tr>
             <td>email:</td>
             <td>{{$data->email}}</td>
         </tr>

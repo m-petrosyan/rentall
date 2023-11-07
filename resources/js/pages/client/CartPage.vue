@@ -36,10 +36,19 @@
                     <div class="pb-12">
                         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 s:grid-cols-1 lg:grid-cols-6">
                             <div class="s:col-span-full lg:col-span-3">
-                                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Full
+                                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">First
                                     name</label>
                                 <div class="mt-2">
-                                    <input v-model="data.full_name" type="text" name="last-name" id="last-name"
+                                    <input v-model="data.first_name" type="text" name="first-name" id="last-name"
+                                           autocomplete="family-name"
+                                           class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                            </div>
+                            <div class="s:col-span-full lg:col-span-3">
+                                <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Last
+                                    name</label>
+                                <div class="mt-2">
+                                    <input v-model="data.last_name" type="text" name="last-name" id="last-name"
                                            autocomplete="family-name"
                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
@@ -53,7 +62,7 @@
                                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 </div>
                             </div>
-                            <div class="s:col-span-full">
+                            <div class="s:col-span-full lg:col-span-3">
                                 <label for="tel" class="block text-sm font-medium leading-6 text-gray-900">
                                     Phone number</label>
                                 <div class="mt-2">
@@ -141,7 +150,8 @@ export default {
     },
     validations: {
         data: {
-            full_name: {required},
+            first_name: {required, minLength: minLength(3)},
+            last_name: {required, minLength: minLength(3)},
             email: {required, email},
             tel: {required, minLength: minLength(9), maxLength: maxLength(16)},
         },

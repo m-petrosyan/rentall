@@ -31,9 +31,12 @@ class OrderEmailNotification extends Mailable
     {
 //
         return new Envelope(
-            from: new Address(config('mail')['from']['address'], $this->mailData['full_name']),
+            from: new Address(
+                config('mail')['from']['address'],
+                $this->mailData['first_name'].' '.$this->mailData['last_name']
+            ),
             replyTo: [
-                new Address($this->mailData['email'], $this->mailData['full_name']),
+                new Address($this->mailData['email'], $this->mailData['first_name']),
             ],
             subject: 'New order for '.Carbon::createFromFormat('Y-m-d', $this->mailData['start_date'])->format('d-m-Y')
         );

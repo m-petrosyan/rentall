@@ -36,7 +36,6 @@ class ProductRepository implements ProductInterface
 
         foreach ($products as $product) {
             $summ += Product::find($product)->price;
-            dump($summ);
         }
 
         $summ *= Carbon::create($start)->diffInDays(Carbon::create($end)) + 1;

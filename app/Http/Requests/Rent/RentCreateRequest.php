@@ -23,8 +23,9 @@ class RentCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => ['required', 'string', 'min:3'],
-            'tel' => ['required', 'regex:/^[+0-9]+$/', 'min:9', 'max:16'],
+            'first_name' => ['required', 'string', 'min:2'],
+            'last_name' => ['required', 'string', 'min:2'],
+            'tel' => ['required'],
             'email' => ['required', 'email'],
             'start_date' => ['required', 'date'],
             'end_date' => ['required', 'date'],

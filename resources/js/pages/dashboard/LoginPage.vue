@@ -41,8 +41,8 @@ export default {
         return {
             loading: false,
             form: {
-                username: 'user@gmail.com',
-                password: '12345678'
+                username: '',
+                password: ''
             }
         }
     },

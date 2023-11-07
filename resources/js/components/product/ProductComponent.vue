@@ -4,7 +4,7 @@
                  v-for="product in products"
                  :key="product.id">
         <div class="image flex flex-col items-center  h-60 justify-center">
-            <img class="w-full" :src="product.main_image" alt="product">
+            <img class="h-4/5" :src="product.main_image" alt="product">
         </div>
         <div class="flex flex-col gap-3 justify-start">
             <h3 class="title font-bold">{{ product.title }}</h3>

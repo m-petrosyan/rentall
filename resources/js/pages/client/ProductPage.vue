@@ -1,7 +1,7 @@
 <template>
     <div class="product-page" v-if="product && !loading">
         <div class="product flex md:gap-x-10 sm:gap-y-10 md:min-h-96 s:flex-col md:flex-row">
-            <div class="image s:h-96 md:h-auto md:w-1/2 s:w-full bg-contain bg-no-repeat md:bg-left s:bg-top"
+            <div class="image s:h-96 md:h-auto md:w-1/2 s:w-full bg-contain bg-no-repeat bg-center s:bg-top"
                  :style="{backgroundImage: `url(${product.main_image})`}"/>
             <div class="info md:w-1/2  s:w-full">
                 <h3 class="title font-bold">{{ product.title }}</h3>

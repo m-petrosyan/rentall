@@ -102,7 +102,8 @@
                                             <span class="font-semibold">Click to upload</span>
                                             or drag and drop
                                         </p>
-                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, WEBP</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG,
+                                            (500px x 500px , 50kb) </p>
                                     </div>
                                     <input id="main_image" type="file" class="hidden" @change="changePicture">
                                 </label>
@@ -136,7 +137,7 @@
                                         or drag and drop
                                     </p>
                                     <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG, WEBP
-                                        (1900x500)</p>
+                                        (1900px x 500px , 150kb)</p>
                                 </div>
                                 <input id="slider_image" type="file" class="hidden" @change="changePicture">
                             </label>

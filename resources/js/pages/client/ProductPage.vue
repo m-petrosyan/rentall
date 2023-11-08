@@ -27,9 +27,9 @@
             </div>
         </div>
         <pre class="mt-16">{{ product.description }}</pre>
-        <div class="flex mt-20 gap-x-6">
+        <div class="flex mt-20  gap-x-6">
             <Splide v-if="product.similars.length" :options="slider" aria-label="My Favorite Images"
-                    class="w-full h-64">
+                    class="w-full min:h-64">
                 <SplideSlide v-for="slide in product.similars" :key="slide.id">
                     <router-link :to="{name: 'product', params: { id: slide.id }}"
                                  class="flex flex-col h-full">

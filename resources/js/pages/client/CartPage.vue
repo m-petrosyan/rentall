@@ -1,6 +1,7 @@
 <template>
     <div class="container max-w-2xl mx-auto">
-        <div v-if="!ordered">
+        <h1 class="text-center" v-if="!this.cart.length && !ordered">Cart is empty</h1>
+        <div v-else-if="!ordered">
             <h3 class="font-bold">Your order</h3>
             <hr class="mt-5">
             <div class="flex flex-col gap-y-5 mt-5">

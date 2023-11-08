@@ -9,10 +9,16 @@
 
 <script>
 export default {
+    data() {
+        return {
+            minCount: this.delete ? 0 : 1
+        }
+    },
     props: {
         plus: Function,
         minus: Function,
-        count: Number
+        count: Number,
+        delete: Boolean
     },
     methods: {
         changeCount(add) {
@@ -23,7 +29,7 @@ export default {
                     return
                 }
                 count++
-            } else if (count > 1) {
+            } else if (count > this.minCount) {
                 if (this.minus) {
                     this.minus()
                     return

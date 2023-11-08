@@ -21,7 +21,8 @@
                         </div>
                     </router-link>
                     <div class="w-1/6 s:mx-auto s:mt-2 sm:mt-0">
-                        <CountButton v-model:count="item.count" :plus="()=>plus(item)" :minus="()=>minus(index)"/>
+                        <CountButton v-model:count="item.count" :plus="()=>plus(item)" :minus="()=>minus(index)"
+                                     delete/>
                     </div>
                     <h2 class="flex flex-col w-1/6 s:text-center sm:text-right s:mx-auto s:mt-5 sm:mt-0">
                         {{ item.price * item.count }} AMD

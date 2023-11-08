@@ -33,8 +33,8 @@
                 <SplideSlide v-for="slide in product.similars" :key="slide.id">
                     <router-link :to="{name: 'product', params: { id: slide.id }}"
                                  class="flex flex-col h-full">
-                        <div class="image flex items-center">
-                            <img :src="slide.main_image" alt="product">
+                        <div class="image flex flex-col items-center  h-60 justify-center">
+                            <img class=" w-full" :src="slide.main_image" alt="product">
                         </div>
                         <div class="flex flex-col gap-3 text-center">
                             <h3 class="title font-bold">{{ slide.title }}</h3>

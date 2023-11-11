@@ -134,8 +134,9 @@ export default {
                 this.getData()
             },
         },
-        $route(to, from) {//էջը փոխվելուց
-            if (to.params) {
+        $route(to, from) {
+            console.log(to.params.page)
+            if (!to.params.page) {
                 this.paginate.page = 1
             }
         },

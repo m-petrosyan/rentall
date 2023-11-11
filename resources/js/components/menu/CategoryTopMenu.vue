@@ -52,11 +52,13 @@ export default {
         categories: Array,
         category: Number,
         page: Number,
+        search: String,
     },
     methods: {
         setCategory(id) {
             this.$emit('update:search', null)
             this.$emit('update:category', id)
+            this.$emit('update:page', 1)
         }
     },
     // $emit('update:category',category.id)

@@ -35,8 +35,11 @@
                        class="mx-auto block rounded-full border-gray-100 bg-gray-100"
                        placeholder="type here..."/>
             </div>
-            <CategoryTopMenu :categories="categories" v-model:category="paginate.category"
-                             v-model:search="paginate.search"/>
+            <CategoryTopMenu :categories="categories"
+                             v-model:category="paginate.category"
+                             v-model:search="paginate.search"
+                             v-model:page="paginate.page"
+            />
             <div class="product-list mt-10">
                 <div class="grid gap-10 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 s:grid-cols-1">
                     <ProductComponent :products="products.data.products"/>

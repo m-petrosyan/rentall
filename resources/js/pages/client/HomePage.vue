@@ -134,19 +134,11 @@ export default {
                 this.getData()
             },
         },
-        // paginate: {
-        //     handler(newValue, oldValue) {
-        //         // this.loading = true
-        //         console.log(newValue, oldValue)
-        //         this.debouncedFetch()
-        //     },
-        //     deep: true
-        // },
-        // search(newValue, oldValue) {
-        //     this.paginate.category = null
-        //     // this.$router.push({name: 'home-paginate', params: {page: 1}})
-        //     this.debouncedFetch()
-        // },
+        $route(to, from) {//էջը փոխվելուց
+            if (to.params) {
+                this.paginate.page = 1
+            }
+        },
     },
 }
 </script>

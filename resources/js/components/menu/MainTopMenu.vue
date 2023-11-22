@@ -1,8 +1,8 @@
 <template>
     <menu class="h-12 flex items-center justify-center bg-black py-2">
-        <router-link :to="{name:'home'}">
+        <button @click="goToHome">
             <img :src="logo" alt="logo" class="h-10">
-        </router-link>
+        </button>
     </menu>
 </template>
 
@@ -13,6 +13,11 @@ export default {
     data() {
         return {
             logo: logo
+        }
+    },
+    methods: {
+        goToHome() {
+            this.$router.push({name: 'home', params: {page: 1}})
         }
     }
 }

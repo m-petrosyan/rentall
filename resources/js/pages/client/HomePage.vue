@@ -35,8 +35,11 @@
                        class="mx-auto block rounded-full border-gray-100 bg-gray-100"
                        placeholder="type here..."/>
             </div>
-            <CategoryTopMenu :categories="categories" v-model:category="paginate.category"
-                             v-model:search="paginate.search"/>
+            <CategoryTopMenu :categories="categories"
+                             v-model:category="paginate.category"
+                             v-model:search="paginate.search"
+                             v-model:page="paginate.page"
+            />
             <div class="product-list mt-10">
                 <div class="grid gap-10 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 s:grid-cols-1">
                     <ProductComponent :products="products.data.products"/>
@@ -131,19 +134,12 @@ export default {
                 this.getData()
             },
         },
-        // paginate: {
-        //     handler(newValue, oldValue) {
-        //         // this.loading = true
-        //         console.log(newValue, oldValue)
-        //         this.debouncedFetch()
-        //     },
-        //     deep: true
-        // },
-        // search(newValue, oldValue) {
-        //     this.paginate.category = null
-        //     // this.$router.push({name: 'home-paginate', params: {page: 1}})
-        //     this.debouncedFetch()
-        // },
+        $route(to, from) {
+            console.log(to.params.page)
+            if (!to.params.page) {
+                this.paginate.page = 1
+            }
+        },
     },
 }
 </script>

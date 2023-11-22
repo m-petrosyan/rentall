@@ -1,6 +1,7 @@
 <template>
     <div class="container max-w-2xl mx-auto">
-        <div v-if="!ordered">
+        <h1 class="text-center" v-if="!this.cart.length && !ordered">Cart is empty</h1>
+        <div v-else-if="!ordered">
             <h3 class="font-bold">Your order</h3>
             <hr class="mt-5">
             <div class="flex flex-col gap-y-5 mt-5">
@@ -21,7 +22,8 @@
                         </div>
                     </router-link>
                     <div class="w-1/6 s:mx-auto s:mt-2 sm:mt-0">
-                        <CountButton v-model:count="item.count" :plus="()=>plus(item)" :minus="()=>minus(index)"/>
+                        <CountButton v-model:count="item.count" :plus="()=>plus(item)" :minus="()=>minus(index)"
+                                     delete/>
                     </div>
                     <h2 class="flex flex-col w-1/6 s:text-center sm:text-right s:mx-auto s:mt-5 sm:mt-0">
                         {{ item.price * item.count }} AMD

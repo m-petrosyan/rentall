@@ -153,7 +153,7 @@ export default {
             first_name: {required, minLength: minLength(3)},
             last_name: {required, minLength: minLength(3)},
             email: {required, email},
-            tel: {required, minLength: minLength(9), maxLength: maxLength(16)},
+            tel: {required, minLength: minLength(9), maxLength: maxLength(20)},
         },
     },
     methods: {
@@ -167,7 +167,6 @@ export default {
             this.setStorage('cart', this.cart, true)
         },
         dayClick(e) {
-            console.log(e)
         },
         order() {
             this.v$.$touch()

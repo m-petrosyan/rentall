@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Mail\ContactMessage;
 use App\Mail\OrderEmailNotification;
 use App\Models\Rent;
-use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Mail;
 
 class RentService
@@ -17,12 +16,6 @@ class RentService
     public function store(array $attributes): void
     {
         $products = $attributes['products'];
-
-        $attributes['total_price'] = ProductRepository::getSumm(
-            $products,
-            $attributes['start_date'],
-            $attributes['end_date']
-        );
 
         unset($attributes['products']);
 

@@ -178,7 +178,8 @@ export default {
                     start_date: this.selectedDate.start ? moment(this.selectedDate.start).format('YYYY-MM-DD') : null,
                     end_date: this.selectedDate.end ? moment(this.selectedDate.end).format('YYYY-MM-DD') : null,
                     ...this.data,
-                    products: cartProducts
+                    products: cartProducts,
+                    total_price: this.totalPrice
                 }
                 this.createRent(newData).then(() => {
 

@@ -6,7 +6,6 @@ use App\Interfaces\ProductInterface;
 use App\Models\Product;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Carbon;
 
 class ProductRepository implements ProductInterface
 {
@@ -24,23 +23,6 @@ class ProductRepository implements ProductInterface
     public static function getSliders(): Collection
     {
         return Product::where('slider', 1)->orderBy('id', 'desc')->get();
-    }
-
-    /**
-     * @param  array  $products
-     * @return mixed
-     */
-    public static function getSumm(array $products, string $start, string $end): int
-    {
-        $summ = 0;
-
-        foreach ($products as $product) {
-            $summ += Product::find($product)->price;
-        }
-
-        $summ *= Carbon::create($start)->diffInDays(Carbon::create($end)) + 1;
-
-        return $summ;
     }
 
     /**

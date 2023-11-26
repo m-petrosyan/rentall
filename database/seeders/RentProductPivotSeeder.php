@@ -16,9 +16,8 @@ class RentProductPivotSeeder extends Seeder
     {
         $kit = Rent::all();
 
-
-        Product::all()->each(function ($user) use ($kit) {
-            $user->rents()->attach(
+        Product::all()->each(function ($product) use ($kit) {
+            $product->rents()->attach(
                 $kit->random(rand(1, 3))->pluck('id')->toArray()
             );
         });

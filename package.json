@@ -30,6 +30,7 @@
         "moment": "^2.29.4",
         "v-calendar": "next",
         "vue-debounce": "^4.0.0",
+        "vue-gtag-next": "^1.14.0",
         "vue-select": "^4.0.0-beta.6",
         "vue3-google-map": "^0.18.0",
         "vuelidate": "^0.7.7"

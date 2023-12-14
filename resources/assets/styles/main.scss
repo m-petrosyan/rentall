@@ -17,8 +17,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    //background-color: #f5f5f5;
-
 
     #app {
         min-height: 100vh;
@@ -68,6 +66,10 @@ body {
         option {
 
         }
+    }
+
+    select{
+        max-width: 100%;
     }
 
     input[type=checkbox] {

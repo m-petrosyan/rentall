@@ -27,7 +27,7 @@
                     </div>
                     <div class="flex items-center gap-x-2">
                         <InstagramIcon/>
-                        <a href="https://www.instagram.com/rentprocinema_arm/" target="_blank" class="text-sm">rentprocinema_arm</a>
+                        <a href="https://www.instagram.com/rentall_am/" target="_blank" class="text-sm">@rentall_am</a>
                     </div>
                 </div>
             </div>

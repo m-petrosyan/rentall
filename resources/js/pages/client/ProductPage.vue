@@ -26,7 +26,7 @@
 
             </div>
         </div>
-        <pre class="mt-16">{{ product.description }}</pre>
+        <pre class="mt-16 break-normal whitespace-pre-wrap">{{ product.description }}</pre>
         <div class="flex mt-20  gap-x-6">
             <Splide v-if="product.similars.length" :options="slider" aria-label="My Favorite Images"
                     class="w-full min:h-64">

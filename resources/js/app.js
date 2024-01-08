@@ -13,14 +13,12 @@ import '../assets/styles/moretoggles.min.css'
 import 'vue-select/dist/vue-select.css';
 import '@splidejs/vue-splide/css';
 import VueGtag from "vue-gtag-next";
-// app = createApp(App);
 
 const app = createApp(App);
 app.config.globalProperties.$loading = 11;
 
-
 app.use(moment)
-    .use(VueGtag, {property: {id: "G-T2PS5MP13T"}})
+    .use(VueGtag, {property: {id: "G-G92SMT2331"}})
     .use(store)
     .use(router)
     .use(VCalendar)

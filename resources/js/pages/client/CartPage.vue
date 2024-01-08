@@ -32,7 +32,7 @@
                 <h2 class="flex justify-end font-bold">Total price: {{ totalPrice }} AMD</h2>
             </div>
             <ErrorMessages :error="v$" :serverError="getOrderError?.message"
-                           :customValidation="selectedDateValidation"/>
+                           :customValidation="selectedDateValidation" ref="messages"/>
             <form class="space-y-4 md:space-y-6" @submit.prevent="order">
                 <div class="space-y-12 mt-16">
                     <div class="pb-12">
@@ -187,6 +187,8 @@ export default {
 
                     this.ordered = true
                 })
+            } else {
+                this.$refs.messages.$refs.message.scrollIntoView({behavior: 'smooth', block: 'center'});
             }
         }
     },

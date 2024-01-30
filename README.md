@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://files.catbox.moe/mhfce3.jpg" alt="logo">
+  <img src="https://files.catbox.moe/ykuap9.jpg" alt="logo">
 </div>
 
 Rental of filming equipment from the world's leading manufacturers

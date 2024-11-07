@@ -4,7 +4,6 @@
         <div v-if="rents && !loading" class="mx-auto mt-10 max-w-screen-2xl">
             <div class="flex flex-col gap-y-10 justify-between bg-white relative overflow-hidden">
                 <div class="overflow-x-auto">
-					{{rent}}
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs ppercase">
                         <tr>

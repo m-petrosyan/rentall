@@ -13,6 +13,6 @@ class RentRepository implements RentInterface
      */
     public static function getAll(): Collection
     {
-        return Rent::withRelations();
+        return Rent::orderByDesc('id')->withRelations();
     }
 }

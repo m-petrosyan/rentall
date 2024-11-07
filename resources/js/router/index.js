@@ -22,6 +22,7 @@ import KitListPage from "@/pages/dashboard/kit/KitListPage.vue";
 import KitCreateEditPage from "@/pages/dashboard/kit/KitCreateEditPage.vue";
 import CategoryCreateEditPage from "../pages/dashboard/category/CategoryCreateEditPage.vue";
 import BrandCreateEditPage from "@/pages/dashboard/brand/BrandCreateEditPage.vue";
+import RentListPage from "@/pages/dashboard/rent/RentListPage.vue";
 
 
 const router = createRouter({
@@ -153,6 +154,11 @@ const router = createRouter({
                                     component: ProductCreateEditPage,
                                 }
                             ]
+                        },
+                        {
+                            path: 'rent',
+                            name: 'db-rent',
+                            component: RentListPage
                         },
                     ]
                 }

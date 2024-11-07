@@ -34,21 +34,6 @@ const putRequest = async (urlPath, body) => {
         .catch(error => Promise.reject(error.response.data));
 };
 
-const patchRequest = async (urlPath, body) => {
-    let headers = await getHeader();
-    return axios
-        .patch(urlPath, body, headers)
-        .then(response => response.data)
-        .catch(error => Promise.reject(error.response.data));
-};
-
-const optionRequest = async (urlPath, body) => {
-    let headers = await getHeader();
-    return axios
-        .options(urlPath, headers)
-        .then(response => response.data)
-        .catch(error => Promise.reject(error.response.data));
-};
 
 const getHeader = async () => {
     let access_token = sessionStorage.getItem('token')
@@ -60,4 +45,4 @@ const getHeader = async () => {
     };
 };
 
-export {postRequest, getRequest, patchRequest, putRequest, deleteRequest, optionRequest}
+export {postRequest, getRequest, putRequest, deleteRequest}

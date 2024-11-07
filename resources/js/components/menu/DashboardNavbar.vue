@@ -46,6 +46,12 @@
                     <h3>Product</h3>
                 </router-link>
             </li>
+            <li>
+                <router-link :to="{name:'db-rent',params:{page: 1}}" class="flex gap-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2"> <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z"></path> <path d="M9 11v-5a3 3 0 0 1 6 0v5"></path> </svg>
+                    <h3>Rent</h3>
+                </router-link>
+            </li>
             <!--            <li class="flex gap-x-2">-->
             <!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
             <!--                     stroke="currentColor" class="w-6 h-6">-->

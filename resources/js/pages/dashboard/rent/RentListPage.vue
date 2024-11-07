@@ -17,6 +17,7 @@
                         </tr>
                         </thead>
                         <tbody>
+						{{rent}}
                         <tr v-for="rent in rents.data" :key="rent.id"
                             class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">

@@ -34,14 +34,18 @@ class ProductRepository implements ProductInterface
      */
     public static function getWithPaginate(int $limit, int $page, string|null $search, int|null $category): Paginator
     {
-//        dd($limit, $page, $search, $category);
-
-        return Product::withRelations()->take($page)
+        return Product::withRelations()
             ->when($search, function ($query) use ($search) {
-                $query->where('title', 'LIKE', "%$search%");
-            })->when($category, function ($query) use ($search, $category) {
+                $words = explode(' ', $search); // Split search string into words
+                foreach ($words as $word) {
+                    $query->where('title', 'LIKE', "%$word%");
+                }
+            })
+            ->when($category, function ($query) use ($category) {
                 $query->where('category_id', $category);
-            })->orderBy('id', 'desc')->paginate($limit);
+            })
+            ->orderBy('id', 'desc')
+            ->paginate($limit);
     }
 
     /**

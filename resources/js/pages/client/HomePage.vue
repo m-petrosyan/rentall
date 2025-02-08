@@ -2,6 +2,11 @@
     <div v-if="products && categories && !loading">
         <Splide v-if="products.data.slider.length" :options="slider" aria-label="My Favorite Images"
                 class="w-screen relative ml-50vw h-500px left-1/2 s:hidden md:block">
+            <SplideSlide>
+                <video class="w-full h-full object-cover" autoplay loop muted>
+                    <source src="/video.webm" type="video/webm">
+                </video>
+            </SplideSlide>
             <SplideSlide v-for="slide in products.data.slider" :key="slide.id">
                 <router-link
                     :to="{name: 'product', params: { id: slide.id }}"
